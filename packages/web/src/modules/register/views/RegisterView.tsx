@@ -1,31 +1,56 @@
 import * as React from "react";
 import { Form, Icon, Input, Button } from "antd";
-const FormItem = Form.Item;
+import { withFormik, FormikErrors, FormikProps } from 'formik';
 
-export class RegisterView extends React.PureComponent {
-  render() {
+const FormItem = Form.Item;
+interface FormValues {
+    email: string,
+    confirmPassword: string,
+    password: string,
+}
+
+interface Props {
+    submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
+}
+
+class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
+    render() {
+    const { values, handleBlur, handleChange, handleSubmit } = this.props;
     return (
-      <div style={{ display: 'flex' }}>
+      <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
         <div style={{ width: 400, margin: 'auto' }}>
             <h1>Register</h1>
             <FormItem>
             <Input
+                name="email"
                 prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-                placeholder="Username"
+                type="email"
+                placeholder="Email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
             />
             </FormItem>
             <FormItem>
             <Input
+                name="password" 
                 prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
                 type="password"
                 placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
             />
             </FormItem>
             <FormItem>
             <Input
+                name="confirmPassword"
                 prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-                type="confirmpassword"
+                type="confirmPassword"
                 placeholder="Confirm Password"
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
             />
             </FormItem>
             <FormItem>
@@ -44,7 +69,17 @@ export class RegisterView extends React.PureComponent {
                 Or <a href="">login now!</a>
             </FormItem>
         </div>
-      </div>
+      </form>
     );
   }
 }
+
+export const RegisterView = withFormik<Props, FormValues>({
+    mapPropsToValues: () => ({ email: '', confirmPassword: '', password: '' }),
+    handleSubmit: async (formValues, formikBag) => {
+        const errors = await formikBag.props.submit(formValues);
+        if (errors) {
+            formikBag.setErrors(errors);
+        }
+    }
+})(Register);

@@ -5,8 +5,8 @@ import { withFormik, FormikErrors, FormikProps } from 'formik';
 const FormItem = Form.Item;
 interface FormValues {
     email: string,
-    confirmPassword: string,
     password: string,
+    confirmPassword: string,
 }
 
 interface Props {
@@ -46,7 +46,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
             <Input
                 name="confirmPassword"
                 prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-                type="confirmPassword"
+                type="password"
                 placeholder="Confirm Password"
                 value={values.confirmPassword}
                 onChange={handleChange}
@@ -75,7 +75,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
 }
 
 export const RegisterView = withFormik<Props, FormValues>({
-    mapPropsToValues: () => ({ email: '', confirmPassword: '', password: '' }),
+    mapPropsToValues: () => ({ email: '', password: '', confirmPassword: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
         if (errors) {

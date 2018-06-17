@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as yup from 'yup';
 import { Form, Icon, Input, Button } from "antd";
 import { withFormik, FormikErrors, FormikProps } from 'formik';
 
@@ -15,12 +16,15 @@ interface Props {
 
 class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
-    const { values, handleBlur, handleChange, handleSubmit } = this.props;
+    const { values, handleBlur, handleChange, handleSubmit, touched, errors } = this.props;
     return (
       <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
         <div style={{ width: 400, margin: 'auto' }}>
             <h1>Register</h1>
-            <FormItem>
+            <FormItem 
+                help={touched.email && errors.email ? errors.email : ""}
+                validateStatus={touched.email && errors.email ? "error" : undefined}
+            >
             <Input
                 name="email"
                 prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -31,7 +35,10 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                 onBlur={handleBlur}
             />
             </FormItem>
-            <FormItem>
+            <FormItem 
+                help={touched.password && errors.password ? errors.password : ""}
+                validateStatus={touched.password && errors.password ? "error" : undefined}
+            >
             <Input
                 name="password" 
                 prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -42,7 +49,10 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                 onBlur={handleBlur}
             />
             </FormItem>
-            <FormItem>
+            <FormItem
+                help={touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : ""}
+                validateStatus={touched.confirmPassword && errors.confirmPassword ? "error" : undefined}
+            >
             <Input
                 name="confirmPassword"
                 prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -74,7 +84,33 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
   }
 }
 
+// Validation Schema Definition
+const fieldRequired = 'This field is required';
+const invalidEmail = 'Email must be a valid email';
+const emailNotLongEnough = 'Email must be at least 3 characters';
+const passwordNotLongEnough = 'Password must be at least 3 characters';
+const passwordNotMatch = 'Password does not match'
+
+const validationSchema = yup.object().shape({
+    email: yup
+        .string()
+        .min(3, emailNotLongEnough)
+        .max(255)
+        .email(invalidEmail)
+        .required(fieldRequired),
+    password: yup
+        .string()
+        .min(3, passwordNotLongEnough)
+        .max(255)
+        .required(fieldRequired),
+    confirmPassword: yup
+        .string()
+        .matches(/`${yup.ref('password')}`/, passwordNotMatch)
+        .required(fieldRequired),
+});
+
 export const RegisterView = withFormik<Props, FormValues>({
+    validationSchema,
     mapPropsToValues: () => ({ email: '', password: '', confirmPassword: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);

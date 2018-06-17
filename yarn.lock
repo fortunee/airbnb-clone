@@ -375,7 +375,7 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/yup@^0.24.3":
+"@types/yup@^0.24.3", "@types/yup@^0.24.6":
   version "0.24.6"
   resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.24.6.tgz#b086f6aee4e2656196914863871a97dfcc4f8dd7"
 

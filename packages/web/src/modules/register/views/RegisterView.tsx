@@ -74,6 +74,8 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     );
   }
 }
+
+// Validation Schema Definition
 const fieldRequired = 'This field is required';
 const invalidEmail = 'Email must be a valid email';
 const emailNotLongEnough = 'Email must be at least 3 characters';

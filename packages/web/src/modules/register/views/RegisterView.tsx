@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Form, Icon, Input, Button } from "antd";
 import { withFormik, FormikErrors, FormikProps } from 'formik';
+import { userValidationSchema } from '@abb/common';
 
 const FormItem = Form.Item;
 interface FormValues {
@@ -84,7 +85,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
 }
 
 export const RegisterView = withFormik<Props, FormValues>({
-    validationSchema,
+    validationSchema: userValidationSchema,
     mapPropsToValues: () => ({ email: '', password: '', confirmPassword: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);

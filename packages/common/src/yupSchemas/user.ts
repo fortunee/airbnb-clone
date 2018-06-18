@@ -13,7 +13,7 @@ export const registerPasswordValidation = yup
   .max(255)
   .required(fieldRequired);
 
-export const validationSchema = yup.object().shape({
+export const userValidationSchema = yup.object().shape({
     email: yup
         .string()
         .min(3, emailNotLongEnough)

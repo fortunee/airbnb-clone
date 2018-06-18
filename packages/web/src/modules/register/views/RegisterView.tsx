@@ -21,7 +21,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
       <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
         <div style={{ width: 400, margin: 'auto' }}>
             <h1>Register</h1>
-            <FormItem 
+            <FormItem   
                 help={touched.email && errors.email ? errors.email : ""}
                 validateStatus={touched.email && errors.email ? "error" : undefined}
             >

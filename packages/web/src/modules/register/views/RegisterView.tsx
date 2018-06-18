@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as yup from 'yup';
 import { Form, Icon, Input, Button } from "antd";
 import { withFormik, FormikErrors, FormikProps } from 'formik';
 
@@ -83,31 +82,6 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     );
   }
 }
-
-// Validation Schema Definition
-const fieldRequired = 'This field is required';
-const invalidEmail = 'Email must be a valid email';
-const emailNotLongEnough = 'Email must be at least 3 characters';
-const passwordNotLongEnough = 'Password must be at least 3 characters';
-const passwordNotMatch = 'Password does not match'
-
-const validationSchema = yup.object().shape({
-    email: yup
-        .string()
-        .min(3, emailNotLongEnough)
-        .max(255)
-        .email(invalidEmail)
-        .required(fieldRequired),
-    password: yup
-        .string()
-        .min(3, passwordNotLongEnough)
-        .max(255)
-        .required(fieldRequired),
-    confirmPassword: yup
-        .string()
-        .matches(/`${yup.ref('password')}`/, passwordNotMatch)
-        .required(fieldRequired),
-});
 
 export const RegisterView = withFormik<Props, FormValues>({
     validationSchema,

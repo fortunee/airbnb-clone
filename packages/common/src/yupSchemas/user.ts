@@ -23,6 +23,6 @@ export const userValidationSchema = yup.object().shape({
     password: registerPasswordValidation,
     confirmPassword: yup
         .string()
-        .matches(/`${yup.ref('password')}`/, passwordNotMatch)
+        .oneOf([yup.ref('password'), null], passwordNotMatch)
         .required(fieldRequired),
 });

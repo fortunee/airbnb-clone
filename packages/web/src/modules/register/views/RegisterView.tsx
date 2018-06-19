@@ -18,50 +18,50 @@ interface Props {
 
 class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
-    return (
-      <Form style={{ display: 'flex' }}>
-        <div style={{ width: 400, margin: 'auto' }}>
-            <h1>Register</h1>
-            <Field
-                name="email"
-                prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                type="email"
-                placeholder="Email"
-                component={InputField}
-            />
-            <Field
-                name="password"
-                prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                type="password"
-                placeholder="Password"
-                component={InputField}
-            />
-            <Field
-                name="confirmPassword"
-                prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                type="password"
-                placeholder="Confirm Password"
-                component={InputField}
-            />
-            <FormItem>
-            <a className="login-form-forgot" href="">
-                Forgot password
-            </a>
-            </FormItem>
-            <FormItem>
-            <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-            >
-                Register 
-            </Button>
-                Or <a href="">login now!</a>
-            </FormItem>
-        </div>
-      </Form>
-    );
-  }
+        return (
+            <Form style={{ display: 'flex' }}>
+                <div style={{ width: 400, margin: 'auto' }}>
+                    <h1>Register</h1>
+                    <Field
+                        name="email"
+                        prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
+                        type="email"
+                        placeholder="Email"
+                        component={InputField}
+                    />
+                    <Field
+                        name="password"
+                        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
+                        type="password"
+                        placeholder="Password"
+                        component={InputField}
+                    />
+                    <Field
+                        name="confirmPassword"
+                        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
+                        type="password"
+                        placeholder="Confirm Password"
+                        component={InputField}
+                    />
+                    <FormItem>
+                    <a className="login-form-forgot" href="">
+                        Forgot password
+                    </a>
+                    </FormItem>
+                    <FormItem>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        className="login-form-button"
+                    >
+                        Register 
+                    </Button>
+                        Or <a href="">login now!</a>
+                    </FormItem>
+                </div>
+            </Form>
+        );
+    }
 }
 
 export const RegisterView = withFormik<Props, FormValues>({

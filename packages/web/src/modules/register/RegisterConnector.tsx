@@ -10,4 +10,4 @@ export class RegisterConnector extends React.PureComponent {
     render() {
         return (<RegisterView submit={this.handleSubmit}/>);
     }
-}
+};

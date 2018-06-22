@@ -7,8 +7,9 @@ interface Props {
         data: { submit: (values: any) => Promise<null> }
     ) => JSX.Element | null
 }
+
 class Register extends React.PureComponent<ChildMutateProps<Props, any, any>> {
-    async submit (values: any) {
+    submit = async (values: any) => {
         console.log(values);
         const response = await this.props.mutate({
             variables: values

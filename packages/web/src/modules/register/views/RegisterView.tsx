@@ -1,15 +1,14 @@
 import * as React from "react";
 import * as Antd from "antd";
 import { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik';
-import { userValidationSchema } from '@abb/common';
+import { userValidationSchema, } from '@abb/common';
 import { InputField } from "../../shared/inputField";
 
 const { Form: AntForm, Icon, Button } = Antd
 const FormItem = AntForm.Item;
 interface FormValues {
     email: string,
-    password: string,
-    confirmPassword: string,
+    password: string
 }
 
 interface Props {
@@ -36,13 +35,6 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                         placeholder="Password"
                         component={InputField}
                     />
-                    <Field
-                        name="confirmPassword"
-                        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                        type="password"
-                        placeholder="Confirm Password"
-                        component={InputField}
-                    />
                     <FormItem>
                     <a className="login-form-forgot" href="">
                         Forgot password
@@ -66,7 +58,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
 
 export const RegisterView = withFormik<Props, FormValues>({
     validationSchema: userValidationSchema,
-    mapPropsToValues: () => ({ email: '', password: '', confirmPassword: '' }),
+    mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
         if (errors) {

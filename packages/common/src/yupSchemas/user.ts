@@ -20,9 +20,10 @@ export const userValidationSchema = yup.object().shape({
         .max(255)
         .email(invalidEmail)
         .required(fieldRequired),
-    password: registerPasswordValidation,
-    confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password'), null], passwordNotMatch)
-        .required(fieldRequired),
+    password: registerPasswordValidation
 });
+
+export const confirmPassword =  yup
+    .string()
+    .oneOf([yup.ref('password'), null], passwordNotMatch)
+    .required(fieldRequired);

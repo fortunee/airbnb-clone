@@ -24,7 +24,7 @@ class Register extends React.PureComponent<ChildMutateProps<Props, any, any>> {
 };
 
 const registerMutation = gql`
-    mutation($email: String!, $password: String!) {
+    mutation RegisterMutation($email: String!, $password: String!) {
         register(email: $email, password:  $password) {
         path,
         message

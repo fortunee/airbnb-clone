@@ -3,8 +3,8 @@ FROM node
 WORKDIR /abb
 
 COPY ./package.json .
-COPY ./server/package.json ./packages/server/
-COPY ./common/package.json ./packages/common/
+COPY ./packages/server/package.json ./packages/server/
+COPY ./packages/common/package.json ./packages/common/
 
 RUN npm i -g yarn
 RUN yarn install --production

@@ -16,7 +16,7 @@ COPY ./ormconfig.json .
 
 WORKDIR ./packages/server
 
-ENV NODE_ENG=production
+ENV NODE_ENV=production
 
 EXPOSE 4000
 

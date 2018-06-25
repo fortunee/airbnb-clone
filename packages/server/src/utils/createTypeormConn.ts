@@ -5,7 +5,7 @@ export const createTypeormConn = async () => {
   return process.env.NODE_ENV === 'production' 
     ? createConnection({
         ...connectionOptions,
-        url: process.env.DATABASE_URL as string,
+        url: process.env.DATABASE_URL,
         name: "default",
       } as any) 
     : createConnection({

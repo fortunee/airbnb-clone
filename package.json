@@ -1,5 +1,8 @@
 {
     "private": true,
+    "scripts": {
+        "build:server": "lerna run build --scope={@abb/common,@abb/server}"
+    },
     "workspaces": [
         "packages/*"
     ],

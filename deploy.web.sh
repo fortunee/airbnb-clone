@@ -1,2 +1,3 @@
 #! /bin/bash
-yarn build:web 
+yarn build:web
+netlifyctl deploy

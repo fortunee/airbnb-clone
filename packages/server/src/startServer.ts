@@ -59,13 +59,13 @@ export const startServer = async () => {
       }
     } as any)
   );
-
+  const FRONTEND_HOST = process.env.FRONTEND_HOST || 'https://sad-wilson-e47353.netlify.com';
   const cors = {
     credentials: true,
     origin:
       process.env.NODE_ENV === "test"
         ? "*"
-        : (process.env.FRONTEND_HOST as string)
+        : (FRONTEND_HOST as string)
   };
 
   server.express.get("/confirm/:id", confirmEmail);

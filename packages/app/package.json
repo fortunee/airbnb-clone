@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "exp start --offline",
+    "start:tunnel": "exp start --tunnel",
     "ios": "exp ios",
     "android": "exp android"
   }

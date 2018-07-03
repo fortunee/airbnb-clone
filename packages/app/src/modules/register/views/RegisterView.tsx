@@ -2,7 +2,8 @@ import * as React from "react";
 import { withFormik, FormikErrors, FormikProps, Field } from 'formik';
 import { userValidationSchema, } from '@abb/common';
 import { InputField } from "../../shared/inputField";
-import { View, Button } from "react-native";
+import { View } from "react-native";
+import { Button } from 'react-native-elements';
 
 interface FormValues {
     email: string,

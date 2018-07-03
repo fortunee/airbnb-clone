@@ -25,12 +25,14 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                             name="email"
                             placeholder="Email"
                             component={InputField}
+                            containerStyle={{ width: "100%" }}
                         />
                         <Field
                             name="password"
                             secureTextEntry={true}
                             placeholder="Password"
                             component={InputField}
+                            containerStyle={{ width: "100%" }}
                         />
                         <Button
                             style={{ marginTop: 25 }}

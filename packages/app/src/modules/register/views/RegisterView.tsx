@@ -24,6 +24,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                         <Field
                             name="email"
                             placeholder="Email"
+                            autoCapitalize="none"
                             component={InputField}
                             containerStyle={{ width: "100%" }}
                         />

@@ -2,7 +2,8 @@ import * as React from "react";
 import { withFormik, FormikErrors, FormikProps, Field } from 'formik';
 import { userValidationSchema, } from '@abb/common';
 import { InputField } from "../../shared/inputField";
-import { View, Button } from "react-native";
+import { View, Text } from "react-native";
+import { Card, Button } from 'react-native-elements';
 
 interface FormValues {
     email: string,
@@ -17,19 +18,28 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
         const { handleSubmit } = this.props;
         return (
-                <View style={{ marginTop: 200 }}>
-                    <Field
-                        name="email"
-                        placeholder="Email"
-                        component={InputField}
-                    />
-                    <Field
-                        name="password"
-                        secureTextEntry={true}
-                        placeholder="Password"
-                        component={InputField}
-                    />
-                    <Button title="submit"onPress={handleSubmit as any} />
+                <View style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+                    <Card>
+                        <Text style={{ fontSize: 30, marginBottom: 10 }}>Register</Text>
+                        <Field
+                            name="email"
+                            placeholder="Email"
+                            autoCapitalize="none"
+                            component={InputField}
+                            containerStyle={{ width: "100%" }}
+                        />
+                        <Field
+                            name="password"
+                            secureTextEntry={true}
+                            placeholder="Password"
+                            component={InputField}
+                            containerStyle={{ width: "100%" }}
+                        />
+                        <Button
+                            style={{ marginTop: 25 }}
+                            title="submit"
+                            onPress={handleSubmit as any} />
+                    </Card>
                 </View>
         );
     }

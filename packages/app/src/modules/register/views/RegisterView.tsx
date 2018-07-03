@@ -2,7 +2,7 @@ import * as React from "react";
 import { withFormik, FormikErrors, FormikProps, Field } from 'formik';
 import { userValidationSchema, } from '@abb/common';
 import { InputField } from "../../shared/inputField";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Card, Button } from 'react-native-elements';
 
 interface FormValues {
@@ -20,6 +20,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
         return (
                 <View style={{ flex: 1, display: "flex", justifyContent: "center" }}>
                     <Card>
+                        <Text style={{ fontSize: 30, marginBottom: 10 }}>Register</Text>
                         <Field
                             name="email"
                             placeholder="Email"

@@ -32,7 +32,10 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                             placeholder="Password"
                             component={InputField}
                         />
-                        <Button title="submit"onPress={handleSubmit as any} />
+                        <Button
+                            style={{ marginTop: 25 }}
+                            title="submit"
+                            onPress={handleSubmit as any} />
                     </Card>
                 </View>
         );

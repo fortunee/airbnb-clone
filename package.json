@@ -7,6 +7,8 @@
     "workspaces": {
         "packages": ["packages/*"],
         "nohoist": [
+            "**/react-native-elements",
+            "**/react-native-elements/**",
             "**/react-native",
             "**/react-native/**",
             "**/expo",

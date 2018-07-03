@@ -17,7 +17,7 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
         const { handleSubmit } = this.props;
         return (
-                <View style={{ marginTop: 200 }}>
+                <View style={{ flex: 1, display: "flex", justifyContent: "center" }}>
                     <Field
                         name="email"
                         placeholder="Email"

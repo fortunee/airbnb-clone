@@ -65,7 +65,8 @@
     "build": "rimraf ./dist && tsc && copyfiles -u 1 src/**/*.graphql dist"
   },
   "jest": {
-    "globalSetup": "./src/testUtils/callSetup.js",
+    "rootDir": "./src",
+    "globalSetup": "./testUtils/callSetup.js",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },

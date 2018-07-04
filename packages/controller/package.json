@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && tsc",
-    "schema:download": "apollo schema:download --endpoint=http://localhost:4000"
+    "schema:download": "apollo schema:download --endpoint=http://localhost:4000",
+    "codegen:generate": "apollo codegen:generate --queries=./src/**/*.tsx --schema=./schema.json --target=typescript ./src/schemaTypes.ts",
+    "gen-types": "npm run schema:download && npm run codegen:generate"
   },
   "dependencies": {
     "graphql": "^0.13.2",

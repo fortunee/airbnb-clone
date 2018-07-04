@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Form as AntForm, Icon, Button } from "antd";
-import { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik';
-import { userValidationSchema, } from '@abb/common';
+import { withFormik, FormikProps, Field, Form } from 'formik';
 import { InputField } from "../../shared/inputField";
+import { Link } from "react-router-dom";
+import { loginSchema } from "@abb/common";
 
 const FormItem = AntForm.Item;
 
@@ -12,15 +13,15 @@ interface FormValues {
 }
 
 interface Props {
-    submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
+    submit: (values: FormValues) => Promise<{[key:string]: string} | null>;
 }
 
-class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
+class Login extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
         return (
             <Form style={{ display: 'flex' }}>
                 <div style={{ width: 400, margin: 'auto' }}>
-                    <h1>Register</h1>
+                    <h1>Login</h1>
                     <Field
                         name="email"
                         prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
@@ -46,9 +47,9 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                         htmlType="submit"
                         className="login-form-button"
                     >
-                        Register 
+                        Login 
                     </Button>
-                        Or <a href="">login now!</a>
+                        Or <Link to="/register">register</Link>
                     </FormItem>
                 </div>
             </Form>
@@ -56,8 +57,10 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     }
 }
 
-export const RegisterView = withFormik<Props, FormValues>({
-    validationSchema: userValidationSchema,
+export const LoginView = withFormik<Props, FormValues>({
+    validationSchema: loginSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
     mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
@@ -65,4 +68,4 @@ export const RegisterView = withFormik<Props, FormValues>({
             formikBag.setErrors(errors);
         }
     }
-})(Register);
+})(Login);

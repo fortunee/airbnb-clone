@@ -27,3 +27,19 @@ export const confirmPassword =  yup
     .string()
     .oneOf([yup.ref('password'), null], passwordNotMatch)
     .required(fieldRequired);
+
+const invalidLogin = 'Invalid login';
+
+export const loginSchema = yup.object().shape({
+    email: yup
+        .string()
+        .min(3, invalidLogin)
+        .max(255, invalidEmail)
+        .email(invalidLogin)
+        .required(fieldRequired),
+    password: yup
+        .string()
+        .min(3, invalidLogin)
+        .max(255, invalidLogin)
+        .required(fieldRequired)
+})

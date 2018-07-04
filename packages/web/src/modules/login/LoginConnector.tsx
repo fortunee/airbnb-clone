@@ -1,9 +1,16 @@
 import * as React from 'react';
+import { LoginView } from './view/LoginView';
 
 export class LoginConnector extends React.PureComponent {
+    dummySubmit = async (values: any) => {
+        console.log(values);
+
+        return null;
+    };
+    
     render() {
         return (
-            <div>Hello Login World</div>
+            <LoginView submit={this.dummySubmit} />
         );
     }
 };

@@ -47,6 +47,8 @@ class Login extends React.PureComponent<FormikProps<FormValues > & Props> {
 
 export const LoginView = withFormik<Props, FormValues>({
     validationSchema: loginSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
     mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);

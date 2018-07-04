@@ -21,7 +21,7 @@ class Login extends React.PureComponent<FormikProps<FormValues > & Props> {
         return (
             <Form style={{ display: 'flex' }}>
                 <div style={{ width: 400, margin: 'auto' }}>
-                    <h1>Register</h1>
+                    <h1>Login</h1>
                     <Field
                         name="email"
                         prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}

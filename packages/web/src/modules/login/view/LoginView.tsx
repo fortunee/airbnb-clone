@@ -3,6 +3,7 @@ import { Form as AntForm, Icon, Button } from "antd";
 import { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik';
 import { InputField } from "../../shared/inputField";
 import { Link } from "react-router-dom";
+import { loginSchema } from "@abb/common";
 
 const FormItem = AntForm.Item;
 
@@ -57,6 +58,7 @@ class Login extends React.PureComponent<FormikProps<FormValues > & Props> {
 }
 
 export const LoginView = withFormik<Props, FormValues>({
+    validationSchema: loginSchema,
     mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);

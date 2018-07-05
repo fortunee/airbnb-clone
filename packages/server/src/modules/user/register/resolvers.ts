@@ -4,8 +4,8 @@ import { formatYupError } from "../../../utils/formatYupError";
 import {
   duplicateEmail,
 } from "./errorMessages";
-import { createConfirmEmailLink } from "./createConfirmEmailLink";
-import { sendEmail } from "../../../utils/sendEmail";
+// import { createConfirmEmailLink } from "./createConfirmEmailLink";
+// import { sendEmail } from "../../../utils/sendEmail";
 import { userValidationSchema } from '@abb/common';
 
 export const resolvers: ResolverMap = {
@@ -13,7 +13,7 @@ export const resolvers: ResolverMap = {
     register: async (
       _,
       args: GQL.IRegisterOnMutationArguments,
-      { redis, url }
+      // { redis, url }
     ) => {
       try {
         await userValidationSchema.validate(args, { abortEarly: false });
@@ -44,12 +44,12 @@ export const resolvers: ResolverMap = {
 
       await user.save();
 
-      if (process.env.NODE_ENV !== "test") {
-        await sendEmail(
-          email,
-          await createConfirmEmailLink(url, user.id, redis)
-        );
-      }
+      // if (process.env.NODE_ENV !== "test") {
+      //   await sendEmail(
+      //     email,
+      //     await createConfirmEmailLink(url, user.id, redis)
+      //   );
+      // }
 
       return null;
     }

@@ -5,6 +5,7 @@ import { LoginMutation, LoginMutationVariables } from './../../schemaTypes';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 
 interface Props {
+    onSessionId?: (sessionId: string) => void, 
     children: (
         data: { submit: (values: LoginMutationVariables) => Promise<{[key:string]: string} | null> }
     ) => JSX.Element | null
@@ -13,14 +14,19 @@ interface Props {
 class Login extends React.PureComponent<ChildMutateProps<Props, LoginMutation, LoginMutationVariables>> {
     submit = async (values: LoginMutationVariables) => {
         console.log(values);
-        const { data: { login }} = await this.props.mutate({
+        const { data: { login: { errors, sessionId } } } = await this.props.mutate({
             variables: values
         });
-        console.log('Response ', login);
+        console.log('Response ', errors, sessionId);
 
-        if (login) {
-            return normalizeErrors(login);
+        if (errors) {
+            return normalizeErrors(errors);
         }
+
+        if (sessionId && this.props.onSessionId) {
+            this.props.onSessionId(sessionId);
+        }
+
         return null;
     }
 
@@ -32,8 +38,11 @@ class Login extends React.PureComponent<ChildMutateProps<Props, LoginMutation, L
 const loginMutation = gql`
     mutation LoginMutation($email: String!, $password: String!) {
         login(email: $email, password:  $password) {
-            path
-            message
+            errors {
+                path
+                message
+            }
+            sessionId
         }
     }
 `;

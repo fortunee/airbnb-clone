@@ -32,8 +32,11 @@ class Login extends React.PureComponent<ChildMutateProps<Props, LoginMutation, L
 const loginMutation = gql`
     mutation LoginMutation($email: String!, $password: String!) {
         login(email: $email, password:  $password) {
-            path
-            message
+            errors {
+                path
+                message
+            }
+            sessionId
         }
     }
 `;

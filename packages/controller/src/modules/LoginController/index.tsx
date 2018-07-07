@@ -13,13 +13,13 @@ interface Props {
 class Login extends React.PureComponent<ChildMutateProps<Props, LoginMutation, LoginMutationVariables>> {
     submit = async (values: LoginMutationVariables) => {
         console.log(values);
-        const { data: { login }} = await this.props.mutate({
+        const { data: { login: { errors, sessionId } } } = await this.props.mutate({
             variables: values
         });
-        console.log('Response ', login);
+        console.log('Response ', errors, sessionId);
 
-        if (login) {
-            return normalizeErrors(login);
+        if (errors) {
+            return normalizeErrors(errors);
         }
         return null;
     }

@@ -5,6 +5,7 @@ import { LoginMutation, LoginMutationVariables } from './../../schemaTypes';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 
 interface Props {
+    onSessionId: (sessionId: string) => void, 
     children: (
         data: { submit: (values: LoginMutationVariables) => Promise<{[key:string]: string} | null> }
     ) => JSX.Element | null
@@ -21,6 +22,11 @@ class Login extends React.PureComponent<ChildMutateProps<Props, LoginMutation, L
         if (errors) {
             return normalizeErrors(errors);
         }
+
+        if (sessionId && this.props.onSessionId) {
+            this.props.onSessionId(sessionId);
+        }
+
         return null;
     }
 

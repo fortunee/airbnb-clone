@@ -7,7 +7,7 @@ export const sendEmail = async (recipient: string, url: string) => {
     port: 587,
     auth: {
         user: process.env.ETHEREAL_NODEMAILER_USER,
-        pass: process.env.ETHEREAL_NODEMAILER_USER
+        pass: process.env.ETHEREAL_NODEMAILER_PASS
     }
   });
 

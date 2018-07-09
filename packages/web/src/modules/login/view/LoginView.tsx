@@ -38,9 +38,9 @@ class Login extends React.PureComponent<FormikProps<FormValues > & Props> {
                         component={InputField}
                     />
                     <FormItem>
-                    <a className="login-form-forgot" href="">
+                    <Link to="forgot-password">
                         Forgot password
-                    </a>
+                    </Link>
                     </FormItem>
                     <FormItem>
                     <Button

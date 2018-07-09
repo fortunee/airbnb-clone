@@ -38,11 +38,6 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                         component={InputField}
                     />
                     <FormItem>
-                    <a className="login-form-forgot" href="">
-                        Forgot password
-                    </a>
-                    </FormItem>
-                    <FormItem>
                     <Button
                         type="primary"
                         htmlType="submit"

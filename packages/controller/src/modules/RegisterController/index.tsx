@@ -14,13 +14,13 @@ interface Props {
 class Register extends React.PureComponent<ChildMutateProps<Props, RegisterMutation, RegisterMutationVariables>> {
     submit = async (values: any) => {
         console.log(values);
-        const {data: { register }} = await this.props.mutate({
+        const { data: { register } } = await this.props.mutate({
             variables: values
         });
         console.log('Response ', register);
 
         if (register) {
-            normalizeErrors(register);
+            return normalizeErrors(register);
         }
 
         return null;

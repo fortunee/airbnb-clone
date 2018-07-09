@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Form as AntForm, Icon, Button } from "antd";
-import { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik';
+import { withFormik, FormikProps, Field, Form } from 'formik';
 import { userValidationSchema, } from '@abb/common';
+import { NormalizeErrorMap } from "@abb/controller";
 import { InputField } from "../../shared/inputField";
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,7 @@ interface FormValues {
 }
 
 interface Props {
-    submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
+    submit: (values: FormValues) => Promise<NormalizeErrorMap | null>;
 }
 
 class Register extends React.PureComponent<FormikProps<FormValues > & Props> {

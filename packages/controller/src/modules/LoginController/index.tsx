@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { graphql, ChildMutateProps } from 'react-apollo';
 import gql from 'graphql-tag';
-import { LoginMutation, LoginMutationVariables } from './../../schemaTypes';
+import { LoginMutation, LoginMutationVariables } from '../../schemaTypes';
 import { normalizeErrors } from '../../utils/normalizeErrors';
+import { NormalizeErrorMap } from '../../types/NormalizeErrorMap';
 
 interface Props {
     onSessionId?: (sessionId: string) => void, 
     children: (
-        data: { submit: (values: LoginMutationVariables) => Promise<{[key:string]: string} | null> }
+        data: { submit: (values: LoginMutationVariables) => Promise<NormalizeErrorMap | null> }
     ) => JSX.Element | null
 }
 

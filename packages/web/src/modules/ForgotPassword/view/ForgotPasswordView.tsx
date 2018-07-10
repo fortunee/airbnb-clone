@@ -1,28 +1,25 @@
 import * as React from "react";
 import { Form as AntForm, Icon, Button } from "antd";
 import { withFormik, FormikProps, Field, Form } from 'formik';
-import { userValidationSchema, } from '@abb/common';
-import { NormalizeErrorMap } from "@abb/controller";
 import { InputField } from "../../shared/inputField";
-import { Link } from "react-router-dom";
+import { NormalizeErrorMap } from "@abb/controller";
 
 const FormItem = AntForm.Item;
 
 interface FormValues {
-    email: string,
-    password: string
+    email: string
 }
 
 interface Props {
     submit: (values: FormValues) => Promise<NormalizeErrorMap | null>;
 }
 
-class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
+class ForgotPassword extends React.PureComponent<FormikProps<FormValues > & Props> {
     render() {
         return (
             <Form style={{ display: 'flex' }}>
                 <div style={{ width: 400, margin: 'auto' }}>
-                    <h1>Register</h1>
+                    <h1>Forgot Password</h1>
                     <Field
                         name="email"
                         prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
@@ -30,22 +27,14 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
                         placeholder="Email"
                         component={InputField}
                     />
-                    <Field
-                        name="password"
-                        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                        type="password"
-                        placeholder="Password"
-                        component={InputField}
-                    />
                     <FormItem>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        className="login-form-button"
-                    >
-                        Register 
-                    </Button>
-                        Or <Link to="/login">login now!</Link>
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            className="login-form-button"
+                        >
+                            Reset Password 
+                        </Button>
                     </FormItem>
                 </div>
             </Form>
@@ -53,13 +42,12 @@ class Register extends React.PureComponent<FormikProps<FormValues > & Props> {
     }
 }
 
-export const RegisterView = withFormik<Props, FormValues>({
-    validationSchema: userValidationSchema,
-    mapPropsToValues: () => ({ email: '', password: '' }),
+export const ForgotPasswordView = withFormik<Props, FormValues>({
+    mapPropsToValues: () => ({ email: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
         if (errors) {
             formikBag.setErrors(errors);
         }
     }
-})(Register);
+})(ForgotPassword);

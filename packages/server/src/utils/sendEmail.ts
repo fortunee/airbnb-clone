@@ -19,8 +19,8 @@ export const sendEmail = async (recipient: string, url: string, emailSubject: st
     text: emailSubject,
     html: `<html>
             <body>
-            <p>Please click the link below</p>
-            <a href="${url}"${emailSubject}</a>
+              <p>Please click the link below</p>
+              <a href="${url}">${emailSubject}</a>
             </body>
           </html>`
   };

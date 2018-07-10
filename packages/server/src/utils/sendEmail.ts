@@ -1,6 +1,6 @@
 import * as nodemailer from 'nodemailer'
 
-export const sendEmail = async (recipient: string, url: string) => {
+export const sendEmail = async (recipient: string, url: string, emailSubject: string) => {
   // Create a SMTP transporter object
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
@@ -15,14 +15,14 @@ export const sendEmail = async (recipient: string, url: string) => {
   const message = {
     from: 'Abb clone <noreply@abbclone.com>',
     to: `Recipient ${recipient}`,
-    subject: 'Abb clone - Email confirmation ✔',
-    text: 'Confirm your email',
+    subject: `Abb clone - ${emailSubject} ✔`,
+    text: emailSubject,
     html: `<html>
-        <body>
-        <p>Please click the link below to confirm your email</p>
-        <a href="${url}">confirm email</a>
-        </body>
-        </html>`
+            <body>
+              <p>Please click the link below</p>
+              <a href="${url}">${emailSubject}</a>
+            </body>
+          </html>`
   };
 
   transporter.sendMail(message, (err, info) => {

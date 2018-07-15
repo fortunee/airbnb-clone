@@ -21,10 +21,10 @@ class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Prop
                 <div style={{ width: 400, margin: 'auto' }}>
                     <h1>Forgot Password</h1>
                     <Field
-                        name="email"
-                        prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                        type="email"
-                        placeholder="Email"
+                        name="newPassword"
+                        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
+                        type="password"
+                        placeholder="New Password"
                         component={InputField}
                     />
                     <FormItem>
@@ -33,7 +33,7 @@ class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Prop
                             htmlType="submit"
                             className="login-form-button"
                         >
-                            Reset Password 
+                            Change Password 
                         </Button>
                     </FormItem>
                 </div>
@@ -43,7 +43,7 @@ class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Prop
 }
 
 export const ChangePasswordView = withFormik<Props, FormValues>({
-    mapPropsToValues: () => ({ email: '' }),
+    mapPropsToValues: () => ({ newPassword: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
         if (errors) {

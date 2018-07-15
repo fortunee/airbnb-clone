@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { ChangePasswordView } from './view/ChangePasswordView';
-import { ChangePasswordController } from '@abb/controller';
 
 
 export class ChangePasswordConnector extends React.PureComponent {
+    submit = async (values: any) => {
+        console.log(values);
+        return null;
+    }
+
     render() {
         return (
-            <ChangePasswordController>
-                {
-                    ({ submit }) => <ChangePasswordView submit={submit} />
-                }
-            </ChangePasswordController>
+            <ChangePasswordView submit={this.submit} />
         );
     }
 };

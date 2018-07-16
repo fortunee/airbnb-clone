@@ -3,6 +3,7 @@ import { Form as AntForm, Icon, Button } from "antd";
 import { withFormik, FormikProps, Field, Form } from 'formik';
 import { InputField } from "../../shared/inputField";
 import { NormalizeErrorMap } from "../../../../../controller/dist";
+import { changePasswordSchema } from "@abb/common";
 
 const FormItem = AntForm.Item;
 
@@ -43,6 +44,7 @@ class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Prop
 }
 
 export const ChangePasswordView = withFormik<Props, FormValues>({
+    validationSchema: changePasswordSchema,
     mapPropsToValues: () => ({ newPassword: '' }),
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);

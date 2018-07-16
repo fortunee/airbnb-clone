@@ -12,7 +12,7 @@ export class ChangePasswordConnector extends React.PureComponent<RouteComponentP
     render() {
         const { match: { params: { key } } } = this.props;
         return (
-            <ChangePasswordView submit={this.submit} />
+            <ChangePasswordView submit={this.submit} /> 
         );
     }
 };

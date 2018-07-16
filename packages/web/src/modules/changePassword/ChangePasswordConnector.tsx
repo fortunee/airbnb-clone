@@ -11,6 +11,7 @@ export class ChangePasswordConnector extends React.PureComponent<RouteComponentP
 
     render() {
         const { match: { params: { key } } } = this.props;
+        console.log(key);
         return (
             <ChangePasswordView submit={this.submit} /> 
         );

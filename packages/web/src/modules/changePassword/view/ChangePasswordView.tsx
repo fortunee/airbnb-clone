@@ -2,7 +2,7 @@ import * as React from "react";
 import { Form as AntForm, Icon, Button } from "antd";
 import { withFormik, FormikProps, Field, Form } from 'formik';
 import { InputField } from "../../shared/inputField";
-import { NormalizeErrorMap } from "../../../../../controller/dist";
+import { NormalizeErrorMap, ForgotPasswordChangeMutationVariables } from "@abb/controller";
 import { changePasswordSchema } from "@abb/common";
 
 const FormItem = AntForm.Item;
@@ -12,7 +12,9 @@ interface FormValues {
 }
 
 interface Props {
-    submit: (values: FormValues) => Promise<NormalizeErrorMap | null>;
+    onFinish: () => void;
+    key: string;
+    submit: (values: ForgotPasswordChangeMutationVariables) => Promise<NormalizeErrorMap | null>;
 }
 
 class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Props> {
@@ -46,10 +48,12 @@ class ChangePassword extends React.PureComponent<FormikProps<FormValues > & Prop
 export const ChangePasswordView = withFormik<Props, FormValues>({
     validationSchema: changePasswordSchema,
     mapPropsToValues: () => ({ newPassword: '' }),
-    handleSubmit: async (formValues, formikBag) => {
-        const errors = await formikBag.props.submit(formValues);
+    handleSubmit: async ({ newPassword }, formikBag) => {
+        const errors = await formikBag.props.submit({ newPassword,  key: formikBag.props.key });
         if (errors) {
             formikBag.setErrors(errors);
+        } else {
+            formikBag.props.onFinish();
         }
     }
 })(ChangePassword);

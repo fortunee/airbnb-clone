@@ -14,6 +14,7 @@ interface FormValues {
 }
 
 interface Props {
+    onFinish: () => void;
     submit: (values: FormValues) => Promise<NormalizeErrorMap | null>;
 }
 
@@ -67,6 +68,8 @@ export const LoginView = withFormik<Props, FormValues>({
         const errors = await formikBag.props.submit(formValues);
         if (errors) {
             formikBag.setErrors(errors);
+        } else {
+            formikBag.props.onFinish();
         }
     }
 })(Login);

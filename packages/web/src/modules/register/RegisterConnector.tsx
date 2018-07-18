@@ -1,12 +1,23 @@
 import * as React from 'react';
-import { RegisterView } from './view/RegisterView';
 import { RegisterController } from '@abb/controller';
+import { RouteComponentProps } from 'react-router-dom';
 
-export class RegisterConnector extends React.PureComponent {
+import { RegisterView } from './view/RegisterView';
+
+export class RegisterConnector extends React.PureComponent< RouteComponentProps<{}>> {
+    onFinish = () => {
+        this.props.history.push(
+            '/m/confirm-email',
+            {
+                message: "Please check your email to confirm your account"
+            }
+        );
+    }
+
     render() {
         return (
             <RegisterController>
-                {({ submit }: { submit: any}) => <RegisterView submit={submit}/>}
+                {({ submit }: { submit: any}) => <RegisterView onFinish={this.onFinish} submit={submit}/>}
             </RegisterController>
         );
     }

@@ -39,6 +39,8 @@ export class Listing extends BaseEntity {
   // @Column('uuid')
   // ownerId: string;
 
+  @Column("uuid") userId: string;
+
   @ManyToOne(() => User, user => user.listings)
   /** I could use the @JoinColumn to rename the userId field to whatever I want */
   // @JoinColumn({ name: 'ownerId'}

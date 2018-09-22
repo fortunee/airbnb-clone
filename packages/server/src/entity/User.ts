@@ -7,7 +7,7 @@ import {
   BeforeInsert,
   OneToMany
 } from "typeorm";
-import { Listing } from "@abb/server/src/entity/Listing";
+import { Listing } from "./Listing";
 
 @Entity("users")
 export class User extends BaseEntity {

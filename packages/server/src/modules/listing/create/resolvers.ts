@@ -4,9 +4,9 @@ import { Listing } from "../../../entity/Listing";
 export const resolvers: ResolverMap = {
     Mutation: {
         createListing: async (_, { input }, { session }) => {
-            if (!session.userId) {
-                throw new Error('Not Authenticated!');
-            }
+            // if (!session.userId) {
+            //     throw new Error('Not Authenticated!');
+            // }
             
             await Listing.create({
                 ...input,

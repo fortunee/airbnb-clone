@@ -3,7 +3,10 @@ import {
   Column,
   BaseEntity,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  // JoinColumn,
 } from 'typeorm';
+import { User } from './User';
 
 @Entity('listings')
 export class Listing extends BaseEntity {
@@ -29,4 +32,12 @@ export class Listing extends BaseEntity {
 
   @Column('text', { array: true })
   amenities: string[];
+
+  // @Column('uuid')
+  // ownerId: string;
+
+  @ManyToOne(() => User, user => user.listings)
+  /** I could use the @JoinColumn to rename the userId field to whatever I want */
+  // @JoinColumn({ name: 'ownerId'}
+  user: User;
 }

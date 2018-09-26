@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { Form as AntForm, Button } from "antd";
-import { Field, Form, Formik } from 'formik';
-import { InputField } from '../../shared/inputField';
+import { Form, Formik } from 'formik';
+import { FormSectionOne } from './view/FormSectionOne';
+import { FormSectionTwo } from './view/FormSectionTwo';
+import { FormSectionThree } from './view/FormSectionThree';
 
 const FormItem = AntForm.Item;
 
@@ -17,10 +20,25 @@ interface FormValues {
     amenities: string[];
 }
 
-export class CreateListingConnector extends React.PureComponent {
+interface State {
+    formSection: number;
+}
+
+// tslint:disable-next-line:jsx-key
+const formSections = [<FormSectionOne />, <FormSectionTwo />, <FormSectionThree />];
+
+export class CreateListingConnector extends React.PureComponent<RouteComponentProps<{}>, State> {
+
+    state = {
+        formSection: 0
+    }
+
     submit = (values: any) => {
         console.log('Values ', values)
     }
+
+    nextSection = () => this.setState(state => ({ formSection: state.formSection + 1 }));
+
     render() {
         return (
          <Formik<{}, FormValues> initialValues={{
@@ -39,19 +57,26 @@ export class CreateListingConnector extends React.PureComponent {
                      <div>
                          <Form style={{ display: 'flex' }}>
                             <div style={{ width: 400, margin: 'auto' }}>
-                                <h1>Login</h1>
+                                <h1>Create Listing</h1>
                                 
                                 
-
+                                {formSections[this.state.formSection]}
                                 
 
                                 <FormItem>
-                                    <Button
+                                    {this.state.formSection === formSections.length - 1 ? 
+                                    (<Button
                                         type="primary"
                                         htmlType="submit"
                                     >
                                         Create listing 
-                                    </Button>
+                                    </Button>) :
+                                    (<Button
+                                        type="primary"
+                                        onClick={this.nextSection}
+                                    >
+                                        Next
+                                    </Button>)}
                                 </FormItem>
                             </div>
                         </Form>

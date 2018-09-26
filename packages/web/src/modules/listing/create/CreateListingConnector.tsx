@@ -41,23 +41,7 @@ export class CreateListingConnector extends React.PureComponent {
                             <div style={{ width: 400, margin: 'auto' }}>
                                 <h1>Login</h1>
                                 
-                                <Field
-                                    name="price"
-                                    placeholder="Price"
-                                    component={InputField}
-                                />
-
-                                <Field
-                                    name="beds"
-                                    placeholder="Beds"
-                                    component={InputField}
-                                />
-
-                                <Field
-                                    name="guests"
-                                    placeholder="Guests"
-                                    component={InputField}
-                                />
+                                
 
                                 <Field
                                     name="longitude"

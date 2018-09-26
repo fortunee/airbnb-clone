@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form as AntForm, Icon, Button } from "antd";
+import { Form as AntForm, Button } from "antd";
 import { Field, Form, Formik } from 'formik';
 import { InputField } from '../../shared/inputField';
 
@@ -41,12 +41,59 @@ export class CreateListingConnector extends React.PureComponent {
                             <div style={{ width: 400, margin: 'auto' }}>
                                 <h1>Login</h1>
                                 <Field
-                                    name="email"
-                                    prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} /> as any}
-                                    type="email"
-                                    placeholder="Email"
+                                    name="name"
+                                    placeholder="Name"
                                     component={InputField}
                                 />
+
+                                <Field
+                                    name="category"
+                                    placeholder="Category"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="description"
+                                    placeholder="Description"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="price"
+                                    placeholder="Price"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="beds"
+                                    placeholder="Beds"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="guests"
+                                    placeholder="Guests"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="longitude"
+                                    placeholder="Longitude"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="latitude"
+                                    placeholder="Latitude"
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    name="amenities"
+                                    placeholder="Amenities"
+                                    component={InputField}
+                                />
+
                                 <FormItem>
                                     <Button
                                         type="primary"

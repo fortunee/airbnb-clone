@@ -43,23 +43,7 @@ export class CreateListingConnector extends React.PureComponent {
                                 
                                 
 
-                                <Field
-                                    name="longitude"
-                                    placeholder="Longitude"
-                                    component={InputField}
-                                />
-
-                                <Field
-                                    name="latitude"
-                                    placeholder="Latitude"
-                                    component={InputField}
-                                />
-
-                                <Field
-                                    name="amenities"
-                                    placeholder="Amenities"
-                                    component={InputField}
-                                />
+                                
 
                                 <FormItem>
                                     <Button

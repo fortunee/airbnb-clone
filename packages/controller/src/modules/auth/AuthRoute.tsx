@@ -17,7 +17,7 @@ export class AuthRouteComponent extends React.PureComponent<ChildProps<Props, Me
 
         if (!data.me) {
             // Redirect user to login
-            return <Redirect to='/login' />;
+            return <Redirect to={{ pathname: '/login', state: { next: routeProps.location.pathname } }} />;
         }
 
         const Component = component as any;

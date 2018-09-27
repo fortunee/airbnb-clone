@@ -100,4 +100,4 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
     }
 }
 
-export const CreateListingConnector = withCreateListing(CreateListingComponent)
+export const CreateListingConnector = withCreateListing(CreateListingComponent);

@@ -22,7 +22,7 @@ export const InputField: React.SFC<FieldProps<any> & { prefix: React.ReactNode, 
             help={errorMsg}
             validateStatus={errorMsg ? "error" : undefined}
         >
-        <InputComp {...field} {...props} onChange={useNumberInput ? (newValue: any) => setFieldValue(field.name, newValue) : onChange}/>
+        <InputComp {...field} {...props}  style={{ width: '100%' }} onChange={useNumberInput ? (newValue: any) => setFieldValue(field.name, newValue) : onChange}/>
         </FormItem>
     )
 }

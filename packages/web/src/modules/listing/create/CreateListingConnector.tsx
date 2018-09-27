@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form as AntForm, Button } from "antd";
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikActions } from 'formik';
 import { FormSectionOne } from './view/FormSectionOne';
 import { FormSectionTwo } from './view/FormSectionTwo';
 import { FormSectionThree } from './view/FormSectionThree';
+import { withCreateListing, NewPropsCreateListing } from '@abb/controller';
 
 const FormItem = AntForm.Item;
 
@@ -27,14 +28,15 @@ interface State {
 // tslint:disable-next-line:jsx-key
 const formSections = [<FormSectionOne />, <FormSectionTwo />, <FormSectionThree />];
 
-export class CreateListingConnector extends React.PureComponent<RouteComponentProps<{}>, State> {
+export class CreateListingComponent extends React.PureComponent<RouteComponentProps<{}> & NewPropsCreateListing, State> {
 
     state = {
         formSection: 0
     }
 
-    submit = (values: any) => {
-        console.log('Values ', values)
+    submit = async (values: FormValues, { setSubmitting }: FormikActions<FormValues>) => {
+        await this.props.createListing(values);
+        setSubmitting(false);
     }
 
     nextSection = () => this.setState(state => ({ formSection: state.formSection + 1 }));
@@ -53,7 +55,7 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
             amenities: []
          }} onSubmit={this.submit}>
              {
-                 () => (
+                 ({ isSubmitting }) => (
                      <div>
                          <Form style={{ display: 'flex' }}>
                             <div style={{ width: 400, margin: 'auto' }}>
@@ -67,18 +69,25 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
                                         }}
                                     >
                                         {this.state.formSection === formSections.length - 1 ? 
-                                        (<Button
-                                            type="primary"
-                                            htmlType="submit"
-                                        >
-                                            Create listing 
-                                        </Button>) :
-                                        (<Button
-                                            type="primary"
-                                            onClick={this.nextSection}
-                                        >
-                                            Next
-                                        </Button>)}
+                                        (
+                                            <div>
+                                                <Button
+                                                    type="primary"
+                                                    htmlType="submit"
+                                                    disabled={isSubmitting}
+                                                >
+                                                    Create listing 
+                                                </Button>
+                                            </div>
+                                        ) :
+                                        (
+                                            <Button
+                                                type="primary"
+                                                onClick={this.nextSection}
+                                            >
+                                                Next
+                                            </Button>
+                                        )}
                                     </div>
                                 </FormItem>
                             </div>
@@ -90,3 +99,5 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
         );
     }
 }
+
+export const CreateListingConnector = withCreateListing(CreateListingComponent)

@@ -8,10 +8,10 @@ export const FormSectionThree = () => (
         <Form.Item label="Longitude">
             <Field  name="longitude" placeholder="Longitude" component={InputField} />
         </Form.Item>
-        <Form.Item label="Guests">
+        <Form.Item label="Latitude">
             <Field name="latitude" placeholder="Latitude" component={InputField} />
         </Form.Item>
-        <Form.Item label="Guests">
+        <Form.Item label="Amenities">
             <Field name="amenities" placeholder="Amenities" component={InputField} />
         </Form.Item>
     </>

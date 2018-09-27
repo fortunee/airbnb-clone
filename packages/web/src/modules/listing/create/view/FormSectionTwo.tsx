@@ -5,15 +5,10 @@ import { Form } from 'antd';
 
 export const FormSectionTwo = () => (
     <>
-         <Form.Item label="Price">
-            <Field name="price" placeholder="Price" component={InputField} />
-        </Form.Item>
+        <Field label="Price" name="price" placeholder="Price" component={InputField} />
 
-         <Form.Item label="Beds">
-            <Field name="beds" placeholder="Beds" component={InputField} />
-        </Form.Item>
-        <Form.Item label="Guests">
-            <Field name="guests" placeholder="Guests" component={InputField} />
-        </Form.Item>
+        <Field label="Beds" name="beds" placeholder="Beds" component={InputField} />
+        
+        <Field label="Guests" name="guests" placeholder="Guests" component={InputField} />
     </>
 );

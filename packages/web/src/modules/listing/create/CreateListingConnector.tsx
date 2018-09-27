@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form as AntForm, Button } from "antd";
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikActions } from 'formik';
 import { FormSectionOne } from './view/FormSectionOne';
 import { FormSectionTwo } from './view/FormSectionTwo';
 import { FormSectionThree } from './view/FormSectionThree';
@@ -34,8 +34,9 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
         formSection: 0
     }
 
-    submit = (values: FormValues) => {
-        this.props.createListing(values);
+    submit = async (values: FormValues, { setSubmitting }: FormikActions<FormValues>) => {
+        await this.props.createListing(values);
+        setSubmitting(false);
     }
 
     nextSection = () => this.setState(state => ({ formSection: state.formSection + 1 }));
@@ -54,7 +55,7 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
             amenities: []
          }} onSubmit={this.submit}>
              {
-                 () => (
+                 ({ isSubmitting }) => (
                      <div>
                          <Form style={{ display: 'flex' }}>
                             <div style={{ width: 400, margin: 'auto' }}>
@@ -73,6 +74,7 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
                                                 <Button
                                                     type="primary"
                                                     htmlType="submit"
+                                                    disabled={isSubmitting}
                                                 >
                                                     Create listing 
                                                 </Button>

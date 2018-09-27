@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "@abb/*": ["./*/src"]
+    },
     "target": "es5",
     "module": "commonjs",
     "jsx": "react-native",

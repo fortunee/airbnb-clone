@@ -67,18 +67,24 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
                                         }}
                                     >
                                         {this.state.formSection === formSections.length - 1 ? 
-                                        (<Button
-                                            type="primary"
-                                            htmlType="submit"
-                                        >
-                                            Create listing 
-                                        </Button>) :
-                                        (<Button
-                                            type="primary"
-                                            onClick={this.nextSection}
-                                        >
-                                            Next
-                                        </Button>)}
+                                        (
+                                            <div>
+                                                <Button
+                                                    type="primary"
+                                                    htmlType="submit"
+                                                >
+                                                    Create listing 
+                                                </Button>
+                                            </div>
+                                        ) :
+                                        (
+                                            <Button
+                                                type="primary"
+                                                onClick={this.nextSection}
+                                            >
+                                                Next
+                                            </Button>
+                                        )}
                                     </div>
                                 </FormItem>
                             </div>

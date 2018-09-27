@@ -29,7 +29,7 @@ const createListingMutation = gql`
             }
         )
     }
-`;
+` as any & React.AbstractView;
 
 export interface NewPropsCreateListing {
     createListing: (variables: CreateListingMutationVariables) => void;

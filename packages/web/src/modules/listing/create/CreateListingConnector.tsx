@@ -5,7 +5,7 @@ import { Form, Formik, FormikActions } from 'formik';
 import { FormSectionOne } from './view/FormSectionOne';
 import { FormSectionTwo } from './view/FormSectionTwo';
 import { FormSectionThree } from './view/FormSectionThree';
-import { withCreateListing, NewPropsCreateListing } from '@abb/controller';
+import { withCreateListing, WithCreateListing } from '@abb/controller';
 
 const FormItem = AntForm.Item;
 
@@ -28,7 +28,7 @@ interface State {
 // tslint:disable-next-line:jsx-key
 const formSections = [<FormSectionOne />, <FormSectionTwo />, <FormSectionThree />];
 
-export class CreateListingComponent extends React.PureComponent<RouteComponentProps<{}> & NewPropsCreateListing, State> {
+export class CreateListingComponent extends React.PureComponent<RouteComponentProps<{}> & WithCreateListing, State> {
 
     state = {
         formSection: 0

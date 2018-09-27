@@ -5,6 +5,7 @@ import { Form, Formik } from 'formik';
 import { FormSectionOne } from './view/FormSectionOne';
 import { FormSectionTwo } from './view/FormSectionTwo';
 import { FormSectionThree } from './view/FormSectionThree';
+import { withCreateListing, NewPropsCreateListing } from '@abb/controller';
 
 const FormItem = AntForm.Item;
 
@@ -27,14 +28,14 @@ interface State {
 // tslint:disable-next-line:jsx-key
 const formSections = [<FormSectionOne />, <FormSectionTwo />, <FormSectionThree />];
 
-export class CreateListingConnector extends React.PureComponent<RouteComponentProps<{}>, State> {
+export class CreateListingComponent extends React.PureComponent<RouteComponentProps<{}> & NewPropsCreateListing, State> {
 
     state = {
         formSection: 0
     }
 
-    submit = (values: any) => {
-        console.log('Values ', values)
+    submit = (values: FormValues) => {
+        this.props.createListing(values);
     }
 
     nextSection = () => this.setState(state => ({ formSection: state.formSection + 1 }));
@@ -96,3 +97,5 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
         );
     }
 }
+
+export const CreateListingConnector = withCreateListing(CreateListingComponent)

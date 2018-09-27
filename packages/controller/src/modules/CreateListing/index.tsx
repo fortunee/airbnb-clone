@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { CreateListingMutation, CreateListingMutationVariables } from '../../schemaTypes';
 
-const createListingMutation = gql`
+export const createListingMutation = gql`
     mutation CreateListingMutation(
         $name: String!
         $category: String!
@@ -42,14 +42,16 @@ export const withCreateListing = graphql<
     NewPropsCreateListing
 >(createListingMutation, {
     props: ({ mutate }) => ({
-        createListing: (variables) => {
+        createListing: async (variables) => {
             if (!mutate) {
                 return;
             }
 
-            mutate({
+            const res = await mutate({
                 variables
-            })
+            });
+
+            console.log(res)
         }
     })
 });

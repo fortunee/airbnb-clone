@@ -4,23 +4,10 @@ import { InputField } from '../../../shared/inputField';
 
 export const FormSectionOne = () => (
     <React.Fragment>
-        <Field
-            name="name"
-            placeholder="Name"
-            component={InputField}
-        />
+        <Field label="Name" name="name" placeholder="Name" component={InputField} />
 
-        <Field
-            name="category"
-            placeholder="Category"
-            component={InputField}
-        />
+        <Field label="Category" name="category" placeholder="Category" component={InputField} />
 
-        <Field
-            name="description"
-            placeholder="Description"
-            component={InputField}
-        />
-
+        <Field  label="Description" name="description" placeholder="Description" component={InputField} />
     </React.Fragment> 
 );

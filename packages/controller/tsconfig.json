@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "..",
+    "paths": {
+      "@abb/*": ["./*/src"]
+    },
     "outDir": "dist",
     "module": "esnext",
     "target": "es5",

@@ -58,25 +58,28 @@ export class CreateListingConnector extends React.PureComponent<RouteComponentPr
                          <Form style={{ display: 'flex' }}>
                             <div style={{ width: 400, margin: 'auto' }}>
                                 <h1>Create Listing</h1>
-                                
-                                
                                 {formSections[this.state.formSection]}
-                                
-
                                 <FormItem>
-                                    {this.state.formSection === formSections.length - 1 ? 
-                                    (<Button
-                                        type="primary"
-                                        htmlType="submit"
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "flex-end"
+                                        }}
                                     >
-                                        Create listing 
-                                    </Button>) :
-                                    (<Button
-                                        type="primary"
-                                        onClick={this.nextSection}
-                                    >
-                                        Next
-                                    </Button>)}
+                                        {this.state.formSection === formSections.length - 1 ? 
+                                        (<Button
+                                            type="primary"
+                                            htmlType="submit"
+                                        >
+                                            Create listing 
+                                        </Button>) :
+                                        (<Button
+                                            type="primary"
+                                            onClick={this.nextSection}
+                                        >
+                                            Next
+                                        </Button>)}
+                                    </div>
                                 </FormItem>
                             </div>
                         </Form>

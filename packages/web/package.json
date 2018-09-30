@@ -9,12 +9,14 @@
     "apollo-cache-inmemory": "^1.2.4",
     "apollo-client": "^2.3.4",
     "apollo-link-http": "^1.5.4",
+    "apollo-upload-client": "^9.0.0",
     "formik": "1.0.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.5",
     "react-dom": "^16.4.1",
+    "react-dropzone": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
     "yup": "^0.25.1"
@@ -26,11 +28,13 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/apollo-upload-client": "^8.1.0",
     "@types/jest": "^23.1.0",
     "@types/node": "^10.3.3",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.3.18",
     "@types/react-dom": "^16.0.6",
+    "@types/react-dropzone": "^4.2.2",
     "@types/react-router-dom": "^4.2.7",
     "@types/yup": "^0.24.6",
     "typescript": "^2.9.2"

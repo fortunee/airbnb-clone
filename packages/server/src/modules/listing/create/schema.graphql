@@ -1,4 +1,4 @@
-Scalar Upload
+scalar Upload
 
 input CreateListingInput {
     name: String!

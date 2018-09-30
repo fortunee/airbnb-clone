@@ -2,6 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form as AntForm, Button } from "antd";
 import { Form, Formik, FormikActions } from 'formik';
+// import ImageFile from 'react-dropzone';
+
 import { FormSectionOne } from './view/FormSectionOne';
 import { FormSectionTwo } from './view/FormSectionTwo';
 import { FormSectionThree } from './view/FormSectionThree';
@@ -11,6 +13,7 @@ const FormItem = AntForm.Item;
 
 interface FormValues {
     name: string;
+    picture: any | null;
     category: string;
     description: string;
     price: number;
@@ -45,6 +48,7 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
         return (
          <Formik<{}, FormValues> initialValues={{
             name: '',
+            picture: null,
             category: '',
             description: '',
             price: 0,
@@ -55,12 +59,13 @@ export class CreateListingComponent extends React.PureComponent<RouteComponentPr
             amenities: []
          }} onSubmit={this.submit}>
              {
-                 ({ isSubmitting }) => (
+                 ({ isSubmitting, values }) => (
                      <div>
                          <Form style={{ display: 'flex' }}>
                             <div style={{ width: 400, margin: 'auto' }}>
                                 <h1>Create Listing</h1>
                                 {formSections[this.state.formSection]}
+                                {/* {values.picture && <img src={values.picture.preview} />} */}
                                 <FormItem>
                                     <div
                                         style={{

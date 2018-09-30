@@ -16,7 +16,7 @@ class FindListingsComponent extends React.PureComponent<WithFindListings> {
                             key={`${listing.id}-card`}
                             hoverable={true}
                             style={{ width: 240 }}
-                            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                            cover={listing.pictureUrl && <img alt="example" src={listing.pictureUrl} />}
                     >
                         <Meta
                                 title={listing.name}

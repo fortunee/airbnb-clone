@@ -28,6 +28,8 @@ class Login extends React.PureComponent<ChildMutateProps<WithApolloClient<Props>
             this.props.onSessionId(sessionId);
         }
 
+        await this.props.client.resetStore()
+
         return null;
     }
 

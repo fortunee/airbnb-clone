@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, ChildMutateProps } from 'react-apollo';
+import { graphql, ChildMutateProps, withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import { LoginMutation, LoginMutationVariables } from '../../schemaTypes';
 import { normalizeErrors } from '../../utils/normalizeErrors';
@@ -48,5 +48,5 @@ const loginMutation = gql`
     }
 `;
 
-export const LoginController = graphql<Props, LoginMutation, LoginMutationVariables>(loginMutation)(Login);
+export const LoginController = graphql<Props, LoginMutation, LoginMutationVariables>(loginMutation)(withApollo<Props>(Login as any));
 

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 
-class LogoutComponent extends PureComponent {
+class LogoutComponent extends React.Component {
   render() {
     return (
       <div>

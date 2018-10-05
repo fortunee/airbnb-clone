@@ -9,12 +9,14 @@ import { ChangePasswordConnector } from '../modules/changePassword/ChangePasswor
 import { GenericMesssageComponent } from '../modules/GenericMessage';
 import { CreateListingConnector } from '../modules/listing/create/CreateListingConnector';
 import { FindListingsConnector } from '../modules/listing/find/FindListingsConnector';
+import { LogoutConnector } from '../modules/logout';
 
 export const Routes = () => (
     <BrowserRouter>
         <Switch>
             <Route exact={true} path='/register' component={RegisterConnector} />
             <Route exact={true} path='/login' component={LoginConnector} />
+            <Route exact={true} path='/logout' component={LogoutConnector} />
             <Route exact={true} path='/forgot-password' component={ForgotPasswordConnector} />
             <Route exact={true} path='/change-password/:key' component={ChangePasswordConnector} />
             <Route path='/m' component={GenericMesssageComponent} />

@@ -19,13 +19,9 @@ interface Props {
 
 export const LogoutController: React.SFC<Props> = ({ children }) => (
     <Mutation<LogoutMutation, {}> mutation={logoutMutation}>
-      {(mutate, { client }) =>
-        children({
-          logout: async () => {
+        {(mutate, { client }) => (children({ logout: async () => {
             await mutate();
             await client.resetStore();
-          }
-        })
-      }
-    </Mutation>   
-);
+        } }))}
+    </Mutation>
+)

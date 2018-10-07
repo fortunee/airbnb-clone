@@ -11,6 +11,7 @@ interface FormValues {
 }
 
 interface Props {
+    onFinish: () => void;
     submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
 }
 
@@ -53,7 +54,9 @@ export const LoginView = withFormik<Props, FormValues>({
     handleSubmit: async (formValues, formikBag) => {
         const errors = await formikBag.props.submit(formValues);
         if (errors) {
-            formikBag.setErrors(errors);
+            return formikBag.setErrors(errors);
         }
+
+        formikBag.props.onFinish()
     }
 })(Login);

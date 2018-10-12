@@ -6,6 +6,7 @@ import { Button } from "react-native-elements";
 
 import { withCreateListing, WithCreateListing } from "@abb/controller";
 import { InputField } from "../../shared/inputField";
+import { CheckboxGroupField } from "../../shared/CheckboxGroupField";
 
 interface FormValues {
   name: string;
@@ -80,7 +81,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="price"
                 placeholder="Price"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -88,7 +89,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="beds"
                 placeholder="Beds"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -96,7 +97,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="guests"
                 placeholder="Guests"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -104,14 +105,20 @@ export class CreateListingComponent extends React.PureComponent<
                 name="longitude"
                 placeholder="Longitude"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
               <Field
                 label="Latitude"
                 name="latitude"
                 placeholder="Latitude"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
+              />
+
+              <Field
+                name="amenities"
+                options={[ 'Pool', 'Swimming Pool', 'Basketball Court']}
+                component={CheckboxGroupField as any}
               />
               <Button onPress={handleSubmit} title="Create" />
             </ScrollView>

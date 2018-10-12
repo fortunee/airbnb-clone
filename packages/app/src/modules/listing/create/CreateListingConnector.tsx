@@ -6,6 +6,7 @@ import { Button } from "react-native-elements";
 
 import { withCreateListing, WithCreateListing } from "@abb/controller";
 import { InputField } from "../../shared/inputField";
+import { CheckboxGroupField } from "../../shared/CheckboxGroupField";
 
 interface FormValues {
   name: string;
@@ -112,6 +113,12 @@ export class CreateListingComponent extends React.PureComponent<
                 placeholder="Latitude"
                 component={InputField}
                 keyboardType="numeric"
+              />
+
+              <Field
+                name="amenities"
+                options={[ 'Pool', 'Swimming Pool', 'Basketball Court']}
+                component={CheckboxGroupField as any}
               />
               <Button onPress={handleSubmit} title="Create" />
             </ScrollView>

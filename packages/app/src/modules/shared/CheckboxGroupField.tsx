@@ -8,29 +8,43 @@ export class CheckboxGroupField extends React.Component<
     options: string[];
   }
 > {
-  onChangeText = (text: string) => {
+  onPress = (optionName: string, checked: boolean) => {
     const {
-      form: { setFieldValue },
-      field: { name }
+      field,
+      form: { setFieldValue }
     } = this.props;
-    setFieldValue(name, text);
+
+    if (checked) {
+        setFieldValue(
+            field.name,
+            field.value.filter((x: string ) => x !== optionName)
+        );
+    } else {
+        setFieldValue(
+            field.name,
+            [...field.value, optionName]
+        )
+    }
   };
 
   render() {
     const {
       options,
-      field: { name },
-      form: { values }
+      field: { value }
     } = this.props;
     return (
       <React.Fragment>
-        {options.map(option => (
-          <CheckBox
-            key={options.indexOf(option)}
-            title={option}
-            checked={values[name].includes(option)}
-          />
-        ))}
+        {options.map(option => {
+            const checked = value.includes(option);
+            return (
+                <CheckBox
+                  key={options.indexOf(option)}
+                  title={option}
+                  checked={checked}
+                  onPress={() => this.onPress(option, checked)}
+                />
+              )
+        })}
       </React.Fragment>
     );
   }

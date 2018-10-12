@@ -80,7 +80,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="price"
                 placeholder="Price"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -88,7 +88,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="beds"
                 placeholder="Beds"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -96,7 +96,7 @@ export class CreateListingComponent extends React.PureComponent<
                 name="guests"
                 placeholder="Guests"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
 
               <Field
@@ -104,14 +104,14 @@ export class CreateListingComponent extends React.PureComponent<
                 name="longitude"
                 placeholder="Longitude"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
               <Field
                 label="Latitude"
                 name="latitude"
                 placeholder="Latitude"
                 component={InputField}
-                useNumberInput={true}
+                keyboardType="numeric"
               />
               <Button onPress={handleSubmit} title="Create" />
             </ScrollView>

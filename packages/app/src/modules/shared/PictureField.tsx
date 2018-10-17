@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FieldProps } from "formik";
 import { Button } from "react-native-elements";
-import { ImagePicker } from "expo";
+import { ImagePicker, Permissions } from "expo";
 import { ReactNativeFile } from "apollo-upload-client";
 
 export class PictureField extends React.Component<
@@ -10,20 +10,24 @@ export class PictureField extends React.Component<
   }
 > {
   onPress = async () => {
-    const imageResult = await ImagePicker.launchImageLibraryAsync({});
-    if (!imageResult.cancelled) {
-      const file = new ReactNativeFile({
-        uri: imageResult.uri,
-        type: imageResult.type,
-        name: "picture"
-      });
-      const {
-        field: { name },
-        form: { setFieldValue }
-      } = this.props;
-      setFieldValue(name, file);
-    }
-  };
+    const camera = await Permissions.askAsync(Permissions.CAMERA);
+
+    if (camera.status === 'granted') {
+        const imageResult = await ImagePicker.launchImageLibraryAsync({});
+        if (!imageResult.cancelled) {
+        const file = new ReactNativeFile({
+            uri: imageResult.uri,
+            type: imageResult.type,
+            name: "picture"
+        });
+        const {
+            field: { name },
+            form: { setFieldValue }
+        } = this.props;
+        setFieldValue(name, file);
+        }
+    };
+}
 
   render() {
     const {

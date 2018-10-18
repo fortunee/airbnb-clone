@@ -22,7 +22,7 @@ interface FormValues {
   amenities: string[];
 }
 
-export class CreateListingComponent extends React.PureComponent<
+class CreateListingComponent extends React.PureComponent<
   RouteComponentProps<{}> & WithCreateListing
 > {
   submit = async (
@@ -40,6 +40,7 @@ export class CreateListingComponent extends React.PureComponent<
     });
     setSubmitting(false);
   };
+
 
   render() {
     return (
@@ -63,18 +64,18 @@ export class CreateListingComponent extends React.PureComponent<
             <Text style={{ fontSize: 30, marginBottom: 10 }}>
               Create listing
             </Text>
-
-            <Field
-              name="picture"
-              title="Choose a picture"
-              component={PictureField as any}
-            />
-            
+  
             <Field
               label="Name"
               name="name"
               placeholder="Name"
               component={InputField}
+            />
+
+            <Field
+              name="picture"
+              title="Choose a picture"
+              component={PictureField as any}
             />
 
             <Field

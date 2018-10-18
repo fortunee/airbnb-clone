@@ -10,24 +10,26 @@ export class PictureField extends React.Component<
   }
 > {
   onPress = async () => {
-    const camera = await Permissions.askAsync(Permissions.CAMERA);
+    const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    
+    if (status !== "granted") {
+      await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    }
 
-    if (camera.status === 'granted') {
-        const imageResult = await ImagePicker.launchImageLibraryAsync({});
-        if (!imageResult.cancelled) {
-        const file = new ReactNativeFile({
-            uri: imageResult.uri,
-            type: imageResult.type,
-            name: "picture"
-        });
-        const {
-            field: { name },
-            form: { setFieldValue }
-        } = this.props;
-        setFieldValue(name, file);
-        }
-    };
-}
+    const imageResult = await ImagePicker.launchImageLibraryAsync({});
+    if (!imageResult.cancelled) {
+    const file = new ReactNativeFile({
+        uri: imageResult.uri,
+        type: imageResult.type,
+        name: "picture"
+    });
+    const {
+        field: { name },
+        form: { setFieldValue }
+    } = this.props;
+    setFieldValue(name, file);
+    }
+};
 
   render() {
     const {

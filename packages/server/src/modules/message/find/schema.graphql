@@ -1,9 +1,9 @@
-type Messages {
+type Message {
     text: String!
-    userId: String!
+    user: User!
     listingId: String!
 }
 
 type Query {
-    messages(listingId: String!): [Messages!]!
+    messages(listingId: String!): [Message!]!
 }

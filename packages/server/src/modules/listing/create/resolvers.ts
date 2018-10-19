@@ -30,7 +30,7 @@ export const resolvers: ResolverMap = {
             //     throw new Error('Not Authenticated!');
             // }
 
-            const pictureUrl = await processUpload(picture);
+            const pictureUrl = picture ? await processUpload(picture) : null;;
             
             await Listing.create({
                 ...data,

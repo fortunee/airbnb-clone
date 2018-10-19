@@ -3,14 +3,13 @@ import {
     Column,
     BaseEntity,
     PrimaryGeneratedColumn,
-    ManyToOne,
-    // JoinColumn,
+    ManyToOne
   } from 'typeorm';
   import { User } from './User';
 import { Listing } from './Listing';
   
   @Entity('messages')
-  export class Messaging extends BaseEntity {
+  export class Message extends BaseEntity {
     @PrimaryGeneratedColumn('uuid') id: string;
   
     @Column('text')

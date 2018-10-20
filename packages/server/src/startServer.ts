@@ -35,8 +35,8 @@ export const startServer = async () => {
     context: ({ request, response }) => ({
       redis,
       pubSub,
-      url: request.protocol + "://" + request.get("host"),
-      session: request.session,
+      url: request ? request.protocol + "://" + request.get("host") : '',
+      session: request ? request.session : undefined,
       req: request,
       res: response,
       userLoader: userLoader()

@@ -1,4 +1,5 @@
 import { Redis } from "ioredis";
+import { PubSub } from "graphql-yoga";
 import * as express from 'express';
 
 import { userLoader } from "../loaders/UserLoader";
@@ -9,6 +10,7 @@ export interface Session extends Express.Session {
 
 export interface Context {
   redis: Redis;
+  pubSub: PubSub
   url: string;
   session: Session;
   req: Express.Request;

@@ -10,6 +10,7 @@ import { GenericMesssageComponent } from '../modules/GenericMessage';
 import { CreateListingConnector } from '../modules/listing/create/CreateListingConnector';
 import { FindListingsConnector } from '../modules/listing/find/FindListingsConnector';
 import { LogoutConnector } from '../modules/logout';
+import { TestSub } from '../modules/TestSub';
 
 export const Routes = () => (
     <BrowserRouter>
@@ -21,6 +22,7 @@ export const Routes = () => (
             <Route exact={true} path='/change-password/:key' component={ChangePasswordConnector} />
             <Route path='/m' component={GenericMesssageComponent} />
             <Route path='/listing' component={FindListingsConnector} />
+            <Route path='/test-sub' component={TestSub} />
             <AuthRoute path='/create-listing' component={CreateListingConnector} />
         </Switch>
     </BrowserRouter>

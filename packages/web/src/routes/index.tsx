@@ -11,6 +11,7 @@ import { CreateListingConnector } from '../modules/listing/create/CreateListingC
 import { FindListingsConnector } from '../modules/listing/find/FindListingsConnector';
 import { LogoutConnector } from '../modules/logout';
 import { TestSub } from '../modules/TestSub';
+import { ViewListingConnector } from '../modules/listing/view/ViewListingConnector'
 
 export const Routes = () => (
     <BrowserRouter>
@@ -21,7 +22,8 @@ export const Routes = () => (
             <Route exact={true} path='/forgot-password' component={ForgotPasswordConnector} />
             <Route exact={true} path='/change-password/:key' component={ChangePasswordConnector} />
             <Route path='/m' component={GenericMesssageComponent} />
-            <Route path='/listing' component={FindListingsConnector} />
+            <Route path='/listings' component={FindListingsConnector} />
+            <Route path='/listing/:listingId' component={ViewListingConnector} />
             <Route path='/test-sub' component={TestSub} />
             <AuthRoute path='/create-listing' component={CreateListingConnector} />
         </Switch>

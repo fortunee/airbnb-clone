@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ViewListing } from '@abb/controller';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 export class ViewListingConnector extends React.PureComponent<RouteComponentProps<{ listingId: string }>> {
   render() {
@@ -12,7 +12,12 @@ export class ViewListingConnector extends React.PureComponent<RouteComponentProp
           if (! data.listing) {
             return <div>loading...</div>
           }
-          return <div>{data.listing.name}</div>
+          return <div>
+            <div>
+              {data.listing.name}
+            </div>
+            <Link to={`/listing/${listingId}/chat`}>chat with owner</Link>
+          </div>
         }}
       </ViewListing>
     ) 

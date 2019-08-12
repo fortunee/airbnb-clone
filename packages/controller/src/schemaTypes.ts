@@ -51,6 +51,38 @@ export interface CreateListingMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateMessageMutation
+// ====================================================
+
+export interface CreateMessageMutation {
+  createMessage: boolean;
+}
+
+export interface CreateMessageMutationVariables {
+  message: MessageInput;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SendForgotPasswordMutation
+// ====================================================
+
+export interface SendForgotPasswordMutation {
+  sendForgotPasswordEmail: boolean | null;
+}
+
+export interface SendForgotPasswordMutationVariables {
+  email: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: FindListingsQuery
 // ====================================================
 
@@ -68,22 +100,6 @@ export interface FindListingsQuery_findListings {
 
 export interface FindListingsQuery {
   findListings: FindListingsQuery_findListings[];
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SendForgotPasswordMutation
-// ====================================================
-
-export interface SendForgotPasswordMutation {
-  sendForgotPasswordEmail: boolean | null;
-}
-
-export interface SendForgotPasswordMutationVariables {
-  email: string;
 }
 
 
@@ -130,28 +146,6 @@ export interface LogoutMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: RegisterMutation
-// ====================================================
-
-export interface RegisterMutation_register {
-  path: string;
-  message: string;
-}
-
-export interface RegisterMutation {
-  register: RegisterMutation_register[] | null;
-}
-
-export interface RegisterMutationVariables {
-  email: string;
-  password: string;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: ViewListingQuery
 // ====================================================
 
@@ -181,22 +175,6 @@ export interface ViewListingQueryVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: MeQuery
-// ====================================================
-
-export interface MeQuery_me {
-  email: string;
-}
-
-export interface MeQuery {
-  me: MeQuery_me | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: ViewMessagesQuery
 // ====================================================
 
@@ -219,12 +197,56 @@ export interface ViewMessagesQueryVariables {
   listingId: string;
 }
 
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: MeQuery
+// ====================================================
+
+export interface MeQuery_me {
+  email: string;
+}
+
+export interface MeQuery {
+  me: MeQuery_me | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: RegisterMutation
+// ====================================================
+
+export interface RegisterMutation_register {
+  path: string;
+  message: string;
+}
+
+export interface RegisterMutation {
+  register: RegisterMutation_register[] | null;
+}
+
+export interface RegisterMutationVariables {
+  email: string;
+  password: string;
+}
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+// 
+export interface MessageInput {
+  text: string;
+  listingId: string;
+}
 
 //==============================================================
 // END Enums and Input Objects

@@ -7,6 +7,7 @@ export * from './modules/CreateListing';
 export * from './modules/FindListings';
 export * from './modules/ViewListing';
 export * from './modules/ViewMessages';
+export * from './modules/CreateMessage';
 export * from './schemaTypes';
 export * from './types/NormalizeErrorMap';
 export * from './modules/auth/AuthRoute';

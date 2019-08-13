@@ -10,6 +10,10 @@ export class MessageConnector extends React.PureComponent<
 > {
   unsubscribe: () => void;
 
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
   render() {
     const {
       match: { params: { listingId } }
@@ -25,7 +29,7 @@ export class MessageConnector extends React.PureComponent<
             if (! this.unsubscribe) {
               this.unsubscribe = subscribe();
             }
-            
+
             /**
              * @todo: Dirty I know, :(
              * Imma clean this up later, for now I'm just making sure this worrks

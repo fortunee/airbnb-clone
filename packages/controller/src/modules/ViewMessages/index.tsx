@@ -17,9 +17,23 @@ export const viewMessagesQuery = gql`
     }
 `;
 
+export const newMessagSubscription = gql`
+  subscription ($listingId: String!) {
+    newMessage(listingId: $listingId) {
+      text
+      user {
+        id
+        email
+      }
+      listingId
+    }
+  }
+`
+
 export interface WithViewMessages {
     messages: ViewMessagesQuery_messages[];
     loading: boolean;
+    subscribe: () => () => void;
 }
 
 interface Props {
@@ -35,7 +49,7 @@ export class ViewMessages extends React.PureComponent<Props> {
         query={viewMessagesQuery}
         variables={{ listingId }}
     >
-        {({ data, loading }) => {
+        {({ data, loading, subscribeToMore }) => {
             let messages: ViewMessagesQuery_messages[] = [];
 
             if (data && data.messages) {
@@ -44,7 +58,23 @@ export class ViewMessages extends React.PureComponent<Props> {
 
             return children({
                 messages,
-                loading
+                loading,
+                subscribe: () => subscribeToMore({
+                  document: newMessagSubscription,
+                  variables: { listingId },
+                  updateQuery: (prev, { subscriptionData }) => {
+                     if (! subscriptionData.data) {
+                       return prev;
+                     }
+                    return {
+                      ...prev,
+                      messages: [
+                        ...prev.messages,
+                        (subscriptionData.data as any).newMessage
+                      ]
+                    };
+                  }
+                })
             });
         }}
     </Query>

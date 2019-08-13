@@ -5,13 +5,19 @@ import * as session from "express-session";
 import * as connectRedis from "connect-redis";
 import * as RateLimit from "express-rate-limit";
 import * as RateLimitRedisStore from "rate-limit-redis";
+import { applyMiddleware } from 'graphql-middleware';
+import * as express from 'express';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+
 
 import { redis } from "./redis";
+import { middleware } from './middleware';
 import { createTypeormConn } from "./utils/createTypeormConn";
 import { confirmEmail } from "./routes/confirmEmail";
 import { genSchema } from "./utils/genSchema";
 import { redisSessionPrefix } from "./constants";
 import { createTestConn } from "./testUtils/createTestConn";
+import { userLoader } from "./loaders/UserLoader";
 
 const SESSION_SECRET = "ajslkjalksjdfkl";
 const RedisStore = connectRedis(session as any);
@@ -21,13 +27,21 @@ export const startServer = async () => {
     await redis.flushall();
   }
 
+  const schema = genSchema() as any;
+  applyMiddleware(schema, middleware);
+
+  const pubSub = new RedisPubSub();
+
   const server = new GraphQLServer({
-    schema: genSchema(),
-    context: ({ request }) => ({
+    schema,
+    context: ({ request, response }) => ({
       redis,
-      url: request.protocol + "://" + request.get("host"),
-      session: request.session,
-      req: request
+      pubSub,
+      url: request ? request.protocol + "://" + request.get("host") : '',
+      session: request ? request.session : undefined,
+      req: request,
+      res: response,
+      userLoader: userLoader()
     })
   });
 
@@ -60,12 +74,15 @@ export const startServer = async () => {
     } as any)
   );
 
+  server.express.use('/images', express.static('images'));
+  
+  const FRONTEND_HOST = process.env.FRONTEND_HOST || 'https://sad-wilson-e47353.netlify.com';
   const cors = {
     credentials: true,
     origin:
       process.env.NODE_ENV === "test"
         ? "*"
-        : (process.env.FRONTEND_HOST as string)
+        : (FRONTEND_HOST as string)
   };
 
   server.express.get("/confirm/:id", confirmEmail);
@@ -73,13 +90,16 @@ export const startServer = async () => {
   if (process.env.NODE_ENV === "test") {
     await createTestConn(true);
   } else {
-    await createTypeormConn();
+    const conn = await createTypeormConn();
+    await conn.runMigrations();
   }
+
+  const port = process.env.PORT || 4000;
   const app = await server.start({
     cors,
-    port: process.env.NODE_ENV === "test" ? 0 : 4000
+    port: process.env.NODE_ENV === "test" ? 0 : port
   });
-  console.log("Server is running on localhost:4000");
+  console.log(`Server is running on localhost:${port}`);
 
   return app;
 };

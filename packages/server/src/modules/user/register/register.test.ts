@@ -4,12 +4,10 @@ import * as faker from "faker";
 import { User } from "../../../entity/User";
 import {
   duplicateEmail,
-  emailNotLongEnough,
-  invalidEmail,
-  passwordNotLongEnough
 } from "./errorMessages";
 import { TestClient } from "../../../utils/TestClient";
 import { createTestConn } from "../../../testUtils/createTestConn";
+import { emailNotLongEnough, invalidEmail, passwordNotLongEnough } from '@abb/common';
 
 faker.seed(Date.now() + 5);
 const email = faker.internet.email();

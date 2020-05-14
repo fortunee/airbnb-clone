@@ -4,7 +4,7 @@ import { AuthRoute } from '@abb/controller';
 
 import { RegisterConnector } from '../modules/register/RegisterConnector';
 import { LoginConnector } from '../modules/login/LoginConnector';
-import { ForgotPasswordConnector } from '../modules/forgotPassword/ForgotPasswordConnector';
+import { ForgotPasswordConnector } from '../modules/ForgotPassword/ForgotPasswordConnector';
 import { ChangePasswordConnector } from '../modules/changePassword/ChangePasswordConnector';
 import { GenericMesssageComponent } from '../modules/GenericMessage';
 import { CreateListingConnector } from '../modules/listing/create/CreateListingConnector';

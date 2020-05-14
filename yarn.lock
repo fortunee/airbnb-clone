@@ -752,6 +752,16 @@
     "@types/glob" "*"
     fast-glob "^2.0.2"
 
+"@types/googlemaps@*":
+  version "3.39.5"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.39.5.tgz#841ef0273a1af1d91b4b6188acdbb3406ddfb089"
+  integrity sha512-iqcN1ZhAKfWS0z5s0/X0MmhYpOIkHsWe4BlSy67+Q8Fq3qDWad+8wohw35hglvH/L69W9fVyBm8QhsTQRFCbsQ==
+
+"@types/googlemaps@3.38.0":
+  version "3.38.0"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.38.0.tgz#069c0303ec60706b2e32b14330634c1e1cd59e45"
+  integrity sha512-Rp7FnrwyYGnjoxM+/q/4DRqUzvV9JKK1SBRXx8APxU6NNMtYMsWmOMsQOV2U6z8aMFzlUbRv3EDixLcDep8t9w==
+
 "@types/graphql-deduplicator@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/graphql-deduplicator/-/graphql-deduplicator-2.0.0.tgz#9e577b8f3feb3d067b0ca756f4a1fb356d533922"
@@ -835,6 +845,14 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@types/react-dropzone/-/react-dropzone-4.2.2.tgz#af0a2595169700c8ab1114e9096285499beaff40"
   dependencies:
+    "@types/react" "*"
+
+"@types/react-geosuggest@^2.7.10":
+  version "2.7.10"
+  resolved "https://registry.yarnpkg.com/@types/react-geosuggest/-/react-geosuggest-2.7.10.tgz#5fd035d34978133751b585f123c2dce89ddb7cfb"
+  integrity sha512-/eJKThTk86DMFgXmFudPYiZp6p8tebzK0dPCykDnV68QG958LFpRKP1PyzOGdX6HsWUTPCKbq0abSglK2n3g2w==
+  dependencies:
+    "@types/googlemaps" "*"
     "@types/react" "*"
 
 "@types/react-native@*", "@types/react-native@^0.55.17":

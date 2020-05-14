@@ -2,6 +2,8 @@ import * as React from 'react';
 import Geosuggest, { Suggest } from 'react-geosuggest';
 import { FieldProps } from 'formik';
 
+import './locationField.css'
+
 export class LocationField extends React.PureComponent<FieldProps<any>, & {}> {
   onSuggestSelect = (place: Suggest) => {
     console.log(place)

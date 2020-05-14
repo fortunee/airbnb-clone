@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Field } from 'formik';
 import { InputField } from '../../../shared/inputField';
 import { DropZoneField } from '../../../shared/dropZoneField';
+import { LocationField } from '../../../shared/LocationField';
 
 export const FormSectionOne = () => (
     <React.Fragment>
@@ -12,5 +13,7 @@ export const FormSectionOne = () => (
         <Field  label="Description" name="description" placeholder="Description" component={InputField} />
 
         <Field  label="Upload Image" name="picture" component={DropZoneField} />
+        
+        <Field labal="tmp" component={LocationField} />
     </React.Fragment> 
 );

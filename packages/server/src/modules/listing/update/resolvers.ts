@@ -4,16 +4,7 @@ import { processUpload } from "../shared/processUpload";
 
 export const resolvers: ResolverMap = {
   Mutation: {
-    createListing: async (
-      _,
-      { listingId, input: { picture, ...data } },
-      { session }
-    ) => {
-      // if (!session.userId) {
-      //     throw new Error('Not Authenticated!');
-      // }
-
-      //   const pictureUrl = picture ? await processUpload(picture) : null;
+    createListing: async (_, { listingId, input: { picture, ...data } }) => {
       if (picture) {
         data.pictureUrl = await processUpload(picture);
       }

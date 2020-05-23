@@ -11,3 +11,4 @@ export * from './modules/CreateMessage';
 export * from './schemaTypes';
 export * from './types/NormalizeErrorMap';
 export * from './modules/auth/AuthRoute';
+export * from './modules/UpdateListing'

@@ -67,22 +67,6 @@ export interface CreateMessageMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SendForgotPasswordMutation
-// ====================================================
-
-export interface SendForgotPasswordMutation {
-  sendForgotPasswordEmail: boolean | null;
-}
-
-export interface SendForgotPasswordMutationVariables {
-  email: string;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: FindListingsQuery
 // ====================================================
 
@@ -100,6 +84,34 @@ export interface FindListingsQuery_findListings {
 
 export interface FindListingsQuery {
   findListings: FindListingsQuery_findListings[];
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SendForgotPasswordMutation
+// ====================================================
+
+export interface SendForgotPasswordMutation {
+  sendForgotPasswordEmail: boolean | null;
+}
+
+export interface SendForgotPasswordMutationVariables {
+  email: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: LogoutMutation
+// ====================================================
+
+export interface LogoutMutation {
+  logout: boolean | null;
 }
 
 
@@ -134,11 +146,38 @@ export interface LoginMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: LogoutMutation
+// GraphQL mutation operation: RegisterMutation
 // ====================================================
 
-export interface LogoutMutation {
-  logout: boolean | null;
+export interface RegisterMutation_register {
+  path: string;
+  message: string;
+}
+
+export interface RegisterMutation {
+  register: RegisterMutation_register[] | null;
+}
+
+export interface RegisterMutationVariables {
+  email: string;
+  password: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateListingMutation
+// ====================================================
+
+export interface UpdateListingMutation {
+  updateListing: boolean;
+}
+
+export interface UpdateListingMutationVariables {
+  listingId: string;
+  input: UpdateListingInput;
 }
 
 
@@ -158,6 +197,13 @@ export interface ViewListingQuery_viewListing {
   id: string;
   name: string;
   category: string;
+  description: string;
+  price: number;
+  beds: number;
+  guests: number;
+  longitude: number;
+  latitude: number;
+  amenities: string[];
   pictureUrl: string;
   owner: ViewListingQuery_viewListing_owner;
 }
@@ -168,6 +214,22 @@ export interface ViewListingQuery {
 
 export interface ViewListingQueryVariables {
   id: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: MeQuery
+// ====================================================
+
+export interface MeQuery_me {
+  email: string;
+}
+
+export interface MeQuery {
+  me: MeQuery_me | null;
 }
 
 
@@ -202,37 +264,26 @@ export interface ViewMessagesQueryVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: MeQuery
+// GraphQL subscription operation: NewMessageSubscription
 // ====================================================
 
-export interface MeQuery_me {
+export interface NewMessageSubscription_newMessage_user {
+  id: string;
   email: string;
 }
 
-export interface MeQuery {
-  me: MeQuery_me | null;
+export interface NewMessageSubscription_newMessage {
+  text: string;
+  user: NewMessageSubscription_newMessage_user;
+  listingId: string;
 }
 
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: RegisterMutation
-// ====================================================
-
-export interface RegisterMutation_register {
-  path: string;
-  message: string;
+export interface NewMessageSubscription {
+  newMessage: NewMessageSubscription_newMessage;
 }
 
-export interface RegisterMutation {
-  register: RegisterMutation_register[] | null;
-}
-
-export interface RegisterMutationVariables {
-  email: string;
-  password: string;
+export interface NewMessageSubscriptionVariables {
+  listingId: string;
 }
 
 /* tslint:disable */
@@ -246,6 +297,21 @@ export interface RegisterMutationVariables {
 export interface MessageInput {
   text: string;
   listingId: string;
+}
+
+// 
+export interface UpdateListingInput {
+  name?: string | null;
+  picture?: any | null;
+  pictureUrl?: string | null;
+  category?: string | null;
+  description?: string | null;
+  price: number;
+  beds: number;
+  guests: number;
+  latitude?: number | null;
+  longitude?: number | null;
+  amenities?: string[] | null;
 }
 
 //==============================================================

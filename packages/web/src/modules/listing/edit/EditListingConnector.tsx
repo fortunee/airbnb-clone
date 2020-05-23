@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ViewListing } from "@abb/controller";
+import { ViewListing, UpdateListing } from "@abb/controller";
 import { RouteComponentProps } from "react-router-dom";
 import { ListingForm, defaultListingFormValues } from "../shared/ListingForm";
 
@@ -24,18 +24,32 @@ export class EditListingConnector extends React.PureComponent<
             return <div>loading...</div>;
           }
 
-          const {
-            id: _,
-            pictureUrl: __,
-            owner: ___,
-            ...listing
-          } = data.listing;
+          const { id: _, owner: __, ...listing } = data.listing;
 
           return (
-            <ListingForm
-              initialValues={{ ...defaultListingFormValues, ...listing }}
-              submit={this.submit}
-            />
+            <UpdateListing>
+              {({ updateListing }) => (
+                <ListingForm
+                  initialValues={{ ...defaultListingFormValues, ...listing }}
+                  submit={async values => {
+                    const { __typename, ___, ...newValues } = values as any;
+
+                    if (newValues.pictureUrl) {
+                      const pictureParts = newValues.pictureUrl.split('/');
+                      newValues.pictureUrl = pictureParts[pictureParts.length - 1]
+                    }
+                    
+                    const result = await updateListing({
+                      variables: {
+                        input: newValues,
+                        listingId
+                      }
+                    })
+                    console.log(result)
+                  }}
+                />
+              )}
+            </UpdateListing>
           );
         }}
       </ViewListing>

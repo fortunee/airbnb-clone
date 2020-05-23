@@ -13,6 +13,7 @@ const FormItem = AntForm.Item;
 export interface ListingFormValues {
   name: string;
   picture: any | null;
+  pictureUrl: string | null;
   category: string;
   description: string;
   price: number;
@@ -41,6 +42,7 @@ const formSections = [ <FormSectionOne />, <FormSectionTwo />, <FormSectionThree
 export const defaultListingFormValues = {
   name: "",
   picture: null,
+  pictureUrl: null,
   category: "",
   description: "",
   price: 0,

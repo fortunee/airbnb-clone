@@ -6,7 +6,9 @@ import { ListingForm, defaultListingFormValues } from "../shared/ListingForm";
 export class EditListingConnector extends React.PureComponent<
   RouteComponentProps<{ listingId: string }>
 > {
-  submit = async (value: any) => {};
+  submit = async (value: any) => {
+    console.log(value);
+  };
 
   render() {
     const {

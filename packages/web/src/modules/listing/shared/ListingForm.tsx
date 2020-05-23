@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RouteComponentProps, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form as AntForm, Button } from "antd";
 import { Form, Formik, FormikActions } from "formik";
 // import ImageFile from 'react-dropzone';
@@ -13,6 +13,7 @@ const FormItem = AntForm.Item;
 export interface ListingFormValues {
   name: string;
   picture: any | null;
+  pictureUrl: string | null;
   category: string;
   description: string;
   price: number;
@@ -36,15 +37,12 @@ interface Props {
 }
 
 // tslint:disable-next-line:jsx-key
-const formSections = [
-  <FormSectionOne />,
-  <FormSectionTwo />,
-  <FormSectionThree />,
-];
+const formSections = [ <FormSectionOne />, <FormSectionTwo />, <FormSectionThree /> ];
 
 export const defaultListingFormValues = {
   name: "",
   picture: null,
+  pictureUrl: null,
   category: "",
   description: "",
   price: 0,

@@ -1,5 +1,5 @@
 import { ResolverMap } from "../../../types/graphql-utils";
-import { Listing } from "../../../entity/Listing";
+import { listingCacheKey } from "../../../constants";
 
 export const resolvers: ResolverMap = {
     Listing: {
@@ -8,8 +8,9 @@ export const resolvers: ResolverMap = {
     },
 
     Query: {
-        findListings: async () => {
-            return Listing.find();
+        findListings: async (_, __, { redis }) => {
+            const cachedListings = await redis.lrange(listingCacheKey, 0, -1) || [];
+            return cachedListings.map((listing: string) => JSON.parse(listing));
         }
     }
 };

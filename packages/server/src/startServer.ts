@@ -81,7 +81,7 @@ export const startServer = async () => {
   server.express.use("/images", express.static("images"));
 
   const FRONTEND_HOST =
-    process.env.FRONTEND_HOST || "https://sad-wilson-e47353.netlify.com";
+    process.env.FRONTEND_HOST || "https://jovial-pare-40c92f.netlify.app";
   const cors = {
     credentials: true,
     origin: process.env.NODE_ENV === "test" ? "*" : (FRONTEND_HOST as string),

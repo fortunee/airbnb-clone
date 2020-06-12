@@ -5,5 +5,9 @@ input SearchListingsInput {
 }
 
 type Query {
-  searchListings(input: SearchListingsInput): [Listing]!
+  searchListings(
+    input: SearchListingsInput
+    offset: Int!
+    limit: Int!
+  ): [Listing!]!
 }

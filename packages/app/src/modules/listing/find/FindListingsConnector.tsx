@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
   Text,
-  ScrollView,
   TextInput,
   SafeAreaView,
   View,
   Slider,
+  FlatList,
 } from "react-native";
 import { SearchListings } from "@abb/controller";
 import { Card } from "react-native-elements";
@@ -55,10 +55,16 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
           variables={{ input: { name, guests, beds }, limit: 5, offset: 0 }}
         >
           {({ listings }) => (
-            <ScrollView style={{ marginTop: 20 }}>
-              {listings.map((listing) => (
+            <FlatList
+              ListFooterComponent={() => (
+                <View>
+                  <Text>Footer Area</Text>
+                </View>
+              )}
+              data={listings}
+              keyExtractor={({ id }) => `${id}-listing`}
+              renderItem={({ item: listing }) => (
                 <Card
-                  key={`${listing.id}-listing`}
                   title={listing.name}
                   image={
                     listing.pictureUrl ? { uri: listing.pictureUrl } : undefined
@@ -66,8 +72,8 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
                 >
                   <Text>Owner: {listing.owner.email}</Text>
                 </Card>
-              ))}
-            </ScrollView>
+              )}
+            />
           )}
         </SearchListings>
       </React.Fragment>

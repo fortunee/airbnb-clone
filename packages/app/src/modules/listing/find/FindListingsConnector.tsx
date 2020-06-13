@@ -1,19 +1,30 @@
 import * as React from "react";
-import { Text, ScrollView, TextInput, SafeAreaView } from "react-native";
+import {
+  Text,
+  TextInput,
+  SafeAreaView,
+  View,
+  Slider,
+  FlatList,
+} from "react-native";
 import { SearchListings } from "@abb/controller";
 import { Card } from "react-native-elements";
 
 interface State {
   name: string;
+  guests: number;
+  beds: number;
 }
 
 export class FindListingsConnector extends React.PureComponent<{}, State> {
   state = {
     name: "",
+    guests: 1,
+    beds: 1,
   };
 
   render() {
-    const { name } = this.state;
+    const { beds, guests, name } = this.state;
 
     return (
       <React.Fragment>
@@ -24,12 +35,36 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
           onChangeText={(text) => this.setState({ name: text })}
           value={name}
         />
-        <SearchListings variables={{ input: { name }, limit: 5, offset: 0 }}>
+        <View style={{ alignItems: "stretch", justifyContent: "center" }}>
+          <Slider
+            value={guests}
+            onValueChange={(value) => this.setState({ guests: value })}
+            step={1}
+            maximumValue={5}
+          />
+          <Text>Guests: {guests}</Text>
+        </View>
+        <View>
+          <Slider
+            value={beds}
+            onValueChange={(value) => this.setState({ beds: value })}
+          />
+          <Text>Beds: {beds}</Text>
+        </View>
+        <SearchListings
+          variables={{ input: { name, guests, beds }, limit: 5, offset: 0 }}
+        >
           {({ listings }) => (
-            <ScrollView style={{ marginTop: 20 }}>
-              {listings.map((listing) => (
+            <FlatList
+              ListFooterComponent={() => (
+                <View>
+                  <Text>Footer Area</Text>
+                </View>
+              )}
+              data={listings}
+              keyExtractor={({ id }) => `${id}-listing`}
+              renderItem={({ item: listing }) => (
                 <Card
-                  key={`${listing.id}-listing`}
                   title={listing.name}
                   image={
                     listing.pictureUrl ? { uri: listing.pictureUrl } : undefined
@@ -37,8 +72,8 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
                 >
                   <Text>Owner: {listing.owner.email}</Text>
                 </Card>
-              ))}
-            </ScrollView>
+              )}
+            />
           )}
         </SearchListings>
       </React.Fragment>

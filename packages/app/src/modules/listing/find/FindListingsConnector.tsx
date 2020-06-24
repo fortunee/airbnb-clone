@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Text,
   TextInput,
@@ -7,9 +7,9 @@ import {
   Slider,
   FlatList,
   Button,
-} from "react-native";
-import { SearchListings } from "@abb/controller";
-import { Card } from "react-native-elements";
+} from 'react-native';
+import { SearchListings } from '@abb/controller';
+import { Card } from 'react-native-elements';
 
 interface State {
   name: string;
@@ -19,7 +19,7 @@ interface State {
 
 export class FindListingsConnector extends React.PureComponent<{}, State> {
   state = {
-    name: "",
+    name: '',
     guests: 1,
     beds: 1,
   };
@@ -31,12 +31,12 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
       <React.Fragment>
         <SafeAreaView />
         <TextInput
-          style={{ fontSize: 20, width: "100%" }}
+          style={{ fontSize: 20, width: '100%' }}
           placeholder="Search listing..."
           onChangeText={(text) => this.setState({ name: text })}
           value={name}
         />
-        <View style={{ alignItems: "stretch", justifyContent: "center" }}>
+        <View style={{ alignItems: 'stretch', justifyContent: 'center' }}>
           <Slider
             value={guests}
             onValueChange={(value) => this.setState({ guests: value })}
@@ -64,9 +64,6 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
                   <View />
                 )
               }
-              style={{
-                marginBottom: 25
-              }}
               data={listings}
               keyExtractor={({ id }) => `${id}-listing`}
               renderItem={({ item: listing }) => (

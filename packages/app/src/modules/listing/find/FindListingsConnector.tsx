@@ -6,6 +6,7 @@ import {
   View,
   Slider,
   FlatList,
+  Button,
 } from "react-native";
 import { SearchListings } from "@abb/controller";
 import { Card } from "react-native-elements";
@@ -54,13 +55,18 @@ export class FindListingsConnector extends React.PureComponent<{}, State> {
         <SearchListings
           variables={{ input: { name, guests, beds }, limit: 5, offset: 0 }}
         >
-          {({ listings }) => (
+          {({ listings, hasMoreListings, loadMore }) => (
             <FlatList
-              ListFooterComponent={() => (
-                <View>
-                  <Text>Footer Area</Text>
-                </View>
-              )}
+              ListFooterComponent={() =>
+                hasMoreListings ? (
+                  <Button title="Load More" onPress={loadMore} />
+                ) : (
+                  <View />
+                )
+              }
+              style={{
+                marginBottom: 25
+              }}
               data={listings}
               keyExtractor={({ id }) => `${id}-listing`}
               renderItem={({ item: listing }) => (

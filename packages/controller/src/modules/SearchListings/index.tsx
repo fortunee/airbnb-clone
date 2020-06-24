@@ -1,11 +1,11 @@
-import * as React from "react";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import * as React from 'react';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 import {
   SearchListingsQueryVariables,
   SearchListingsQuery,
   SearchListingsQuery_searchListings,
-} from "../../schemaTypes";
+} from '../../schemaTypes';
 
 export const searchListingsQuery = gql`
   query SearchListingsQuery(

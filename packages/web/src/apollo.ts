@@ -5,18 +5,17 @@ import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-
 const httpLink = createUploadLink({
-    uri: process.env.REACT_APP_SERVER_URL,
-    credentials: 'include'
+  uri: process.env.REACT_APP_SERVER_URL,
+  credentials: 'include',
 });
 
 // Create a WS link
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/`,
   options: {
-    reconnect: true
-  }
+    reconnect: true,
+  },
 });
 
 const link = split(
@@ -30,5 +29,5 @@ const link = split(
 
 export const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });

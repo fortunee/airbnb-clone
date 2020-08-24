@@ -15,7 +15,7 @@ export const InputField: React.SFC<FieldProps<any> & { prefix: React.ReactNode, 
     }
 ) => {
     const errorMsg = touched[field.name] && errors[field.name];
-    const InputComp = useNumberInput ? InputNumber : Input;
+    const InputComp = (useNumberInput ? InputNumber : Input) as React.ElementType;
     return (
         <FormItem
             label={label}

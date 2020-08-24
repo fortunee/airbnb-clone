@@ -14,9 +14,10 @@ import { middleware } from "./middleware";
 import { createTypeormConn } from "./utils/createTypeormConn";
 import { confirmEmail } from "./routes/confirmEmail";
 import { genSchema } from "./utils/genSchema";
-import { redisSessionPrefix } from "./constants";
+import { redisSessionPrefix, listingCacheKey } from "./constants";
 import { createTestConn } from "./testUtils/createTestConn";
 import { userLoader } from "./loaders/UserLoader";
+import { Listing } from "./entity/Listing";
 
 const SESSION_SECRET = "ajslkjalksjdfkl";
 const RedisStore = connectRedis(session as any);
@@ -80,7 +81,7 @@ export const startServer = async () => {
   server.express.use("/images", express.static("images"));
 
   const FRONTEND_HOST =
-    process.env.FRONTEND_HOST || "https://sad-wilson-e47353.netlify.com";
+    process.env.FRONTEND_HOST || "https://jovial-pare-40c92f.netlify.app";
   const cors = {
     credentials: true,
     origin: process.env.NODE_ENV === "test" ? "*" : (FRONTEND_HOST as string),
@@ -94,6 +95,11 @@ export const startServer = async () => {
     const conn = await createTypeormConn();
     await conn.runMigrations();
   }
+
+  await redis.del(listingCacheKey);
+  const listings = await Listing.find();
+  const listingStrings = listings.map(listing => JSON.stringify(listing));
+  await redis.lpush(listingCacheKey, ...listingStrings);
 
   const port = process.env.PORT || 4000;
   const app = await server.start({

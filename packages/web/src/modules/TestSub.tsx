@@ -18,7 +18,7 @@ export class TestSub extends React.PureComponent {
     render() {
         return (
             <Subscription subscription={sub}>
-                {(data) => {
+                {(data: any) => {
                     console.log(data);
                     return null
                 }}
